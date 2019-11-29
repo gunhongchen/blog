@@ -4,7 +4,7 @@
           {{title}}
       </div>
       <div class="menu">
-        <el-menu :default-active="activeIndex" :router="true" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu :default-active="activeIndex" :router="true" class="el-menu-demo" mode="horizontal">
           <el-menu-item v-for="(item, index) in menus" :key="index" :index="item.url">{{item.name}}</el-menu-item>
           <!-- <el-submenu index="2">
             <template slot="title">我的工作台</template>
@@ -34,9 +34,6 @@ export default class Header extends Vue {
   @Prop() private title!: string;
   @Prop() private menus: any;
   activeIndex = '1';
-  handleSelect(key, keyPath) {
-    console.log(key, keyPath);
-  }
 }
 </script>
 

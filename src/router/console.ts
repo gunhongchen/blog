@@ -1,0 +1,20 @@
+const croute = [
+    { path: '', name: 'console', component: () => import(/* webpackChunkName: "index" */ '../views/console/C-index.vue') },
+    {
+        path: 'article',
+        component: () => import(/* webpackChunkName: "article" */ '../views/console/article/C-article-layout.vue'),
+        children: [
+            { path: '', name: 'article', component: () => import(/* webpackChunkName: "article" */ '../views/console/article/C-article.vue') },
+            { path: 'add', name: 'articleAdd', component: () => import(/* webpackChunkName: "articleAdd" */ '../views/console/article/C-article-add.vue') }
+        ]
+    },
+    {
+        path: 'tags',
+        component: () => import(/* webpackChunkName: "tags" */ '../views/console/tags/C-tags-layout.vue'),
+        children: [
+            { path: '', name: 'tags', component: () => import(/* webpackChunkName: "tags" */ '../views/console/tags/C-tags.vue') },
+            { path: 'add', name: 'tagsAdd', component: () => import(/* webpackChunkName: "tagsAdd" */ '../views/console/tags/C-tags-add.vue') }
+        ]
+    }
+];
+export default croute;

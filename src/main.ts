@@ -34,6 +34,9 @@ import {
   Input,
   Select,
   Option,
+  Loading,
+  Pagination,
+  Popover
  } from 'element-ui'
 
  Vue.use(Row)
@@ -54,6 +57,9 @@ import {
  Vue.use(Input)
  Vue.use(Select)
  Vue.use(Option)
+ Vue.use(Loading)
+ Vue.use(Pagination)
+ Vue.use(Popover)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

@@ -1,21 +1,21 @@
 <template>
   <div class="article-form">
-      <el-form ref="form" :model="form" :label-position="'right'" label-width="100px">
+      <el-form ref="form" :model="form" :rules="rules" :label-position="'right'" label-width="100px">
         <el-row :gutter="24">
           <el-col :span="20" :offset="2">
-            <el-form-item label="标题">
+            <el-form-item label="标题" prop="title">
               <el-input v-model="form.title"></el-input>
             </el-form-item>
-            <el-form-item label="内容">
+            <el-form-item label="内容" prop="content">
               <mavon-editor v-model="form.content" :tabSize="4"/>
             </el-form-item>
-            <el-form-item label="标签">
+            <el-form-item label="标签" prop="tag">
               <el-select v-model="form.tag" multiple placeholder="请选择">
                 <el-option
                   v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
+                  :key="item._id"
+                  :label="item.name"
+                  :value="item._id">
                 </el-option>
               </el-select>
             </el-form-item>
@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
 import {Article} from './Article'
 
 @Component({
@@ -38,31 +38,28 @@ import {Article} from './Article'
 })
 export default class ArticleForm extends Vue {
     @Prop() private article;
-    isloading: boolean = false;
+    @Prop() isloading!: boolean;
+    @Emit() submit(n: Article){ }
     form= this.article || new Article();
-    options = [{
-      value: '1',
-      label: '黄金糕'
-    }, {
-      value: '2',
-      label: '双皮奶'
-    }, {
-      value: '3',
-      label: '蚵仔煎'
-    }, {
-      value: '4',
-      label: '龙须面'
-    }, {
-      value: '5',
-      label: '北京烤鸭' 
-    }]
-    onSubmit() {
-      this.isloading = true;
-      const _that = this;
-      this.$http.post('/api/article', {content: this.form.content, title: this.form.title, tag: this.form.tag}).then((v) => {
-        console.log(v)
-        _that.isloading = false;
+    rules= {
+        content: [
+          {required: true,  trigger: 'change'}
+        ],
+        title: [
+          {required: true, message: '请输入标题', trigger: 'change'}
+        ],
+        tag: [
+          {required: true, message: '请选择标签', trigger: 'blur'}
+        ]
+    }
+    options: [] = [];
+    created() {
+      this.$http.get(`/api/tag`).then(res => {
+        this.options = res.data;
       })
+    }
+    onSubmit() {
+      this.submit(this.form)
     }
 }
 </script>
