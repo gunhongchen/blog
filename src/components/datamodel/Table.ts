@@ -1,7 +1,7 @@
-import { Article } from './../../views/console/article/components/Article';
 export class TabaData {
-    content?: Array<Article>;
+    content?: Array<{}>;
     size?: number;
     total?: number;
     currentPage?: number;
+    selectedTag?: string;
 }

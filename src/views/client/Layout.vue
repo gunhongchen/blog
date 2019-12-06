@@ -14,6 +14,11 @@ import Header from '@/components/Header.vue';
   },
 })
 export default class Layout extends Vue {
-  title = 'homeTitle'
+  title = 'Home'
 }
 </script>
+<style lang="scss" scoped>
+.layout{
+  height:100%;
+}
+</style>

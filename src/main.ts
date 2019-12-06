@@ -11,7 +11,6 @@ import './assets/styles/style.scss';
 // mavon-editor
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
-// use
 Vue.use(mavonEditor)
 
 // elementUI
@@ -27,6 +26,7 @@ import {
   MenuItemGroup,
   Main,
   Table,
+  Header,
   Button,
   TableColumn,
   Form,
@@ -36,7 +36,11 @@ import {
   Option,
   Loading,
   Pagination,
-  Popover
+  Popover,
+  Divider,
+  Timeline,
+  TimelineItem,
+  InfiniteScroll
  } from 'element-ui'
 
  Vue.use(Row)
@@ -60,10 +64,20 @@ import {
  Vue.use(Loading)
  Vue.use(Pagination)
  Vue.use(Popover)
+ Vue.use(Divider)
+ Vue.use(Header)
+ Vue.use(Timeline)
+ Vue.use(TimelineItem)
+ Vue.use(InfiniteScroll)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
+Vue.filter('date', function (v, format) {
+  if (!format) {
+    return new Date(v).toLocaleString()
+  }
+})
 new Vue({
   router,
   store,

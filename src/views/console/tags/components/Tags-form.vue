@@ -27,7 +27,7 @@ import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
 export default class TagForm extends Vue {
     @Prop() private tag;
     @Emit() submit(n: string){ }
-    @Prop() isloading: boolean;
+    @Prop() isloading!: boolean;
     form= this.tag || {name: ''};
     onSubmit() {
       this.submit(this.form)

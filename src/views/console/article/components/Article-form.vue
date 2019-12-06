@@ -7,10 +7,10 @@
               <el-input v-model="form.title"></el-input>
             </el-form-item>
             <el-form-item label="内容" prop="content">
-              <mavon-editor v-model="form.content" :tabSize="4"/>
+              <mavon-editor v-model="form.content" :tabSize="4" @change="mChange"/>
             </el-form-item>
             <el-form-item label="标签" prop="tag">
-              <el-select v-model="form.tag" multiple placeholder="请选择">
+              <el-select v-model="form.tag" placeholder="请选择">
                 <el-option
                   v-for="item in options"
                   :key="item._id"
@@ -21,7 +21,6 @@
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onSubmit" :loading="isloading">保存</el-button>
-              <el-button>取消</el-button>
             </el-form-item>
           </el-col>
         </el-row>
@@ -32,15 +31,17 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
 import {Article} from './Article'
+import * as tagHttp from '../../../../http/api/tags';
 
 @Component({
   components: {},
 })
 export default class ArticleForm extends Vue {
-    @Prop() private article;
+    @Prop() article!: Article;
     @Prop() isloading!: boolean;
     @Emit() submit(n: Article){ }
     form= this.article || new Article();
+    codeHtml: string = '';
     rules= {
         content: [
           {required: true,  trigger: 'change'}
@@ -54,12 +55,19 @@ export default class ArticleForm extends Vue {
     }
     options: [] = [];
     created() {
-      this.$http.get(`/api/tag`).then(res => {
+      tagHttp.getDatas().then(res => {
         this.options = res.data;
       })
     }
+    updated() {
+      this.form = this.article || new Article();
+    }
     onSubmit() {
+      this.form.codeHtml = this.codeHtml;
       this.submit(this.form)
+    }
+    mChange( v, rander) {
+      this.codeHtml = rander;
     }
 }
 </script>

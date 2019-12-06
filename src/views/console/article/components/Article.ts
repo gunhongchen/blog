@@ -1,7 +1,8 @@
 export class Article {
-    id?: number;
+    _id?: number;
     content?: string;
     title?: string;
     createTime?: string;
     tag?: any;
+    codeHtml?: string;
 }

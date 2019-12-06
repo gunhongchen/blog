@@ -24,6 +24,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import { Message } from 'element-ui';
+import * as tagHttp from '../../../http/api/tags';
 
 @Component({
   components: {
@@ -31,12 +32,11 @@ import { Message } from 'element-ui';
   },
 })
 export default class CTags extends Vue {
-    api = `/api/tag`;
     isLoading: boolean = false;
     tags: [] = []
     getData() {
         this.isLoading = true;
-        this.$http.get(`/api/tag`).then(res => {
+        tagHttp.getDatas().then(res => {
              this.tags = res.data;
             this.isLoading = false;
         })
@@ -47,7 +47,7 @@ export default class CTags extends Vue {
     deleteTag(item) {
         this.isLoading = true;
         const params = {_id: item._id}
-        this.$http.delete(this.api, {params}).then(res => {
+        tagHttp.deleteData(params).then(res => {
             Message.success('删除成功');
             this.getData();
         })

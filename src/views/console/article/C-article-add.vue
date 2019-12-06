@@ -1,9 +1,9 @@
 <template>
   <div class="c-article-add">
-      <Title :title="'添加文章'"></Title>
+      <Title :title="'添加文章'" backurl="/console/article"></Title>
       <div class="article-content p-20">
         <el-card class="box-card">
-          <ArticleForm @submit="submit" isLoading="isLoading"></ArticleForm>
+          <ArticleForm @submit="submit" :isLoading="isLoading" :article="article"></ArticleForm>
         </el-card>
       </div>
   </div>
@@ -13,6 +13,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import ArticleForm from './components/Article-form.vue';
+import * as articleHttp from '../../../http/api/article';
+import { Message } from 'element-ui'
 
 @Component({
   components: {
@@ -21,10 +23,12 @@ import ArticleForm from './components/Article-form.vue';
   },
 })
 export default class CArticleAdd extends Vue {
+  article = {};
   isLoading: boolean = false;
   submit(v) {
     this.isLoading = true;
-    this.$http.post('/api/article', {content: v.content, title: v.title, tag: v.tag}).then((v) => {
+    articleHttp.addData({content: v.content, title: v.title, tag: v.tag, codeHtml: v.codeHtml}).then((res) => {
+      Message.success('添加成功')
       this.$router.push({path: '/console/article'})
       this.isLoading = false;
     })
