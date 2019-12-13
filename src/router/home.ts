@@ -7,14 +7,14 @@ const mroute = [
     component: Home
   },
   {
-    path: 'about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/client/About.vue')
-  },
-  {
     path: 'article',
     name: 'article',
     component: () => import(/* webpackChunkName: "article" */ '../views/client/Article.vue')
+  },
+  {
+    path: 'article-detail/:id',
+    name: 'articleDetail',
+    component: () => import(/* webpackChunkName: "articleDetail" */ '../views/client/ArticleDetail.vue')
   },
 ];
 

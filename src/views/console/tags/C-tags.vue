@@ -1,7 +1,7 @@
 <template>
   <div class="c-tags">
-      <Title :title="'标签管理'"></Title>
-      <div class="article-content p-20">
+      <Title title="标签管理"></Title>
+      <div class="p-20">
         <el-card class="box-card" v-loading="isLoading">
             <div slot="header" class="clearfix">
                 <span>列表</span>
@@ -25,6 +25,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import { Message } from 'element-ui';
 import * as tagHttp from '../../../http/api/tags';
+import { AxiosResponse } from 'axios';
 
 @Component({
   components: {
@@ -33,11 +34,11 @@ import * as tagHttp from '../../../http/api/tags';
 })
 export default class CTags extends Vue {
     isLoading: boolean = false;
-    tags: [] = []
+    tags: any = [];
     getData() {
         this.isLoading = true;
         tagHttp.getDatas().then(res => {
-             this.tags = res.data;
+            this.tags = res;
             this.isLoading = false;
         })
     }

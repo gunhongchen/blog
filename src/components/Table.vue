@@ -5,7 +5,7 @@
                 <table class="el-table__header" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="el-table_1_column_1     is-leaf" colspan="1" rowspan="1" v-for="item in columns" :key="item._id">
+                            <th class="el-table_1_column_1 is-leaf" colspan="1" rowspan="1" v-for="item in columns" :key="item._id">
                                 <div class="cell">{{item.label}}</div>
                             </th>
                         </tr>

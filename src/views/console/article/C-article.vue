@@ -1,6 +1,6 @@
 <template>
   <div class="c-article">
-      <Title :title="'文章管理'"></Title>
+      <Title title="文章管理"></Title>
       <div class="article-content p-20">
         <el-card class="box-card" v-loading="loading">
           <div slot="header" class="clearfix">
@@ -21,7 +21,7 @@
               {{data.data.createTime | date()}}
             </template>
             <template #tag="data">
-              <el-select v-model="data.data.tag" disabled>
+              <el-select v-model="data.data.tag" placeholder="未选择" disabled>
                 <el-option
                   v-for="item in options"
                   :key="item._id"
@@ -72,7 +72,7 @@ export default class CArticle extends Vue {
       currentPage: 1
     }
     articleHttp.getList(pagination).then(res => {
-      this.tableData = res.data;
+      this.tableData = res;
       if(res.data && res.data.content.length > 0) {
         this.getOptions();
       }

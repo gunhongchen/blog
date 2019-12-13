@@ -1,25 +1,27 @@
 <template>
     <div class="article">
-        <el-card class="nav">
-            <ul class="tree size-stitle">
-                <li v-for="(item, i) in tagData" :key="i" @click="selected(item)">
-                    <p>{{item.name}}<span>（{{item.count}}）</span></p>
+        <el-card class="nav" shadow="never">
+            <ul class="tree">
+                <li class="cursor-p " v-for="(item, i) in tagData" :key="i" @click="selected(item)">
+                    <p class="size-title">{{item.name}}<span>（{{item.count}}）</span></p>
                 </li>
             </ul>
         </el-card>
-        <el-card class="list" infinite-scroll-distance="50" v-infinite-scroll="loadData(1)" infinite-scroll-delay="800">
-            <el-timeline>
+        <el-card class="list" shadow="never">
+            <el-timeline> 
                 <el-timeline-item
                 v-for="(item, index) in articleData"
                 :key="index"
                 :timestamp="item.createTime | date()">
-                <el-card>
-                    <h4>{{item.title}}</h4>
-                </el-card>
+                <router-link :to="'article-detail/'+item._id">
+                    <el-card shadow="hover">
+                        <h4>{{item.title}}</h4>
+                    </el-card>
+                </router-link>
                 </el-timeline-item>
             </el-timeline>
-            <p><i class="el-icon-loading"></i></p>
-            <p>没有了</p>
+            <p class="cursor-p" v-if="!islast" @click="loadData(1)">点击加载更多<i v-if="isloading" class="el-icon-loading"></i></p>
+            <p v-if="islast" @click="noData">{{noDataText}}</p>
         </el-card>
     </div>
 </template>
@@ -34,20 +36,20 @@ import { TabaData } from '../../components/datamodel/Table';
 }) 
 export default class Article extends Vue {
 
-    tagData: Array<{}> = [];
+    tagData: any = [];
     selectedTag: {
         _id?: string;
-    } = {};
+    } = {_id:''};
 
     currentPage: number = 1;
     articleData: Array<{}> = [];
-
-    isOver: boolean = false;
-    isload:boolean = false;
+    isloading: boolean = false;
+    islast: boolean = false;
+    noDataText: string = '没有了';
     created() {
         clientHttp.getTags().then(res => {
-            this.tagData = res.data;
-            this.selectedTag = this.tagData[0];
+            this.tagData = res;
+            // this.selectedTag = this.tagData[0];
             this.loadData();
         })
     }
@@ -61,36 +63,31 @@ export default class Article extends Vue {
         this.loadData();
     }
 
-    loadData(isLoad?) {
-        console.log(this.isOver)
-        console.log(isLoad)
-        if(this.isOver || !this.selectedTag._id || this.isload) {
+    loadData(isNext?) {
+        if(this.isloading) {
             return;
-        }else {
-            this.isOver  = false;
         }
-        this.isload = true;
+        this.isloading = true;
         const page = {
-            size: 5,
+            size: 10,
             currentPage: this.currentPage,
             selectedTag: this.selectedTag._id,
         }
         articleHttp.getList(page).then(res => {
-            console.log(res)
-            if(isLoad && !this.isOver) {
-                this.currentPage+=1;
-                this.articleData = [...this.articleData,...res.data.content];
-                console.log(this.articleData)
-            }else if(!isLoad && !this.isOver) {
-                this.articleData = res.data.content;
-                console.log(this.articleData)
+            this.currentPage+=1;
+            const data: any = res;
+            this.islast = Math.ceil(data.total/data.size) < this.currentPage;
+            if(isNext) {
+                this.articleData.push(...data.content);
+                return;
             }
-            console.log(this.currentPage)
-            console.log(res.data.total)
-            console.log(page.size)
-            this.isOver = res.data.total/page.size+1 <= this.currentPage;
-            this.isload = false;
+            this.articleData = data.content;
+            this.isloading = false;
         })
+    }
+
+    noData() {
+        this.noDataText = '都没有了还点';
     }
 }
 </script>
@@ -105,11 +102,14 @@ export default class Article extends Vue {
     transition: 1s;
     .nav,
     .list{
-        width: 45%;
+        width: 47%;
         min-height:200px;
         position:absolute;
         max-height: 80vh;
         overflow: auto;
+        h4{
+            font-size: 1.3em;
+        }
     }
     .nav{
         left :0;
@@ -132,16 +132,20 @@ export default class Article extends Vue {
     .tree {
         li{
             padding: 15px 10px;
+            text-align:right;
             &:hover{
                 background-color: $color-1;
                 color:#fff;
             }
         }
     }
-    // /deep/ {
-    //     .el-tree-node__expand-icon.is-leaf{
-    //         color: #C0C4CC;
-    //     }
-    // }
+    /deep/ {
+        .el-card{
+            border: 0;
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
+            &::-webkit-scrollbar { width: 0 !important }
+        }
+    }
 }
 </style>

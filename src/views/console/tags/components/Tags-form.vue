@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+import { Message } from 'element-ui';
 
 @Component({
   components: {},
@@ -30,6 +31,10 @@ export default class TagForm extends Vue {
     @Prop() isloading!: boolean;
     form= this.tag || {name: ''};
     onSubmit() {
+      if(!this.form.name){
+        Message.error('请输入标签名称')
+        return;
+      }
       this.submit(this.form)
     }
 }
@@ -39,7 +44,12 @@ export default class TagForm extends Vue {
   .tags-form{
     width:100%;
   }
-  /deep/ .el-input{
-    max-width: 80%;
+  /deep/ {
+    .el-input{
+      max-width: 80%;
+    }
+    .el-button.el-button--primary{
+      margin-right:15px;
+    }
   }
 </style>

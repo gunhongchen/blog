@@ -13,11 +13,13 @@ import axios from 'axios'
 // })
 
 // 响应拦截器：在请求响应之后拦截
-// axios.interceptors.response.use(response => {
-//   console.log('请求响应后处理')
-//   return response;
-// }, error => {
-//   return Promise.reject(error)
-// })
+axios.interceptors.response.use(response => {
+  if(response.status === 200) {
+      return response.data;
+  }
+  return response;
+}, error => {
+  return Promise.reject(error)
+})
 
 export default axios;
