@@ -21,7 +21,7 @@
                 </el-timeline-item>
             </el-timeline>
             <p class="cursor-p" v-if="!islast" @click="loadData(1)">点击加载更多<i v-if="isloading" class="el-icon-loading"></i></p>
-            <p v-if="islast" @click="noData">{{noDataText}}</p>
+            <!-- <p v-if="islast" @click="noData">{{noDataText}}</p> -->
         </el-card>
     </div>
 </template>

@@ -73,15 +73,15 @@ export default class CArticle extends Vue {
     }
     articleHttp.getList(pagination).then(res => {
       this.tableData = res;
-      if(res.data && res.data.content.length > 0) {
+      if(res && res['content'].length > 0) {
         this.getOptions();
       }
       this.loading = false;
     })
   }
   getOptions() {
-    tagHttp.getDatas().then(res => {
-      this.options = res.data;
+    tagHttp.getDatas().then((res: any) => {
+      this.options = res;
     })
   }
   deleteData(data) {

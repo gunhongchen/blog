@@ -37,9 +37,11 @@ export default class Login extends Vue {
             Message.error('请输入密码')
             return;
         }
-        console.log(this.form)
-        consoleHttp.login({userName: this.form.userName, password: this.form.password}).then(res => {
-            console.log(res)
+        consoleHttp.login({userName: this.form.userName, password: this.form.password}).then((res: any) => {
+            if(res.success === 1) {
+                // window.localStorage.setItem('_token', res._token);
+                this.$router.push('/console')
+            }
         })
     }
 }

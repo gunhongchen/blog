@@ -55,8 +55,8 @@ export default class ArticleForm extends Vue {
     }
     options: [] = [];
     created() {
-      tagHttp.getDatas().then(res => {
-        this.options = res.data;
+      tagHttp.getDatas().then((res: any) => {
+        this.options = res;
       })
     }
     updated() {
