@@ -2,13 +2,16 @@
     <div class="login">
         <el-form ref="form" :model="form" >
             <el-form-item label="用户名" prop="userName">
-              <el-input v-model="form.userName"></el-input>
+              <el-input v-model="form.userName" clearable></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input v-model="form.password" type="password"></el-input>
+              <el-input v-model="form.password" type="password" clearable></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onSubmit" :loading="isloading">登陆</el-button>
+              <el-link type="primary" class="link">
+                  <router-link to="/">返回首页</router-link>
+              </el-link>
             </el-form-item>
         </el-form>
     </div>
@@ -28,20 +31,20 @@ export default class Login extends Vue {
         password: ''
     }
 
-    onSubmit(v) {
+    onSubmit() {
         if(!this.form.userName) {
-            Message.error('请输入用户名')
+            Message.warning('请输入用户名')
             return;
         }
         if(!this.form.password) {
-            Message.error('请输入密码')
+            Message.warning('请输入密码')
             return;
         }
-        consoleHttp.login({userName: this.form.userName, password: this.form.password}).then((res: any) => {
-            if(res.success === 1) {
-                // window.localStorage.setItem('_token', res._token);
-                this.$router.push('/console')
-            }
+        consoleHttp.login({userName: this.form.userName, password: this.form.password}).then(res => {
+            // console.log(res)
+            this.$router.push('/console');
+        }).catch(err => {
+            Message.error(err.message);
         })
     }
 }
@@ -54,6 +57,12 @@ export default class Login extends Vue {
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
+}
+.link{
+    margin-left: 20px;
+    a{
+        color: rgb(21, 144, 226);
+    }
 }
 /deep/ {
     .el-form-item__content{

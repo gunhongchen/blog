@@ -87,7 +87,7 @@ export default class Article extends Vue {
     }
 
     noData() {
-        this.noDataText = '都没有了还点';
+        this.noDataText = '不说了没有了';
     }
 }
 </script>

@@ -40,7 +40,8 @@ import {
   Divider,
   Timeline,
   TimelineItem,
-  InfiniteScroll
+  InfiniteScroll,
+  Link
  } from 'element-ui'
 
  Vue.use(Row)
@@ -69,6 +70,7 @@ import {
  Vue.use(Timeline)
  Vue.use(TimelineItem)
  Vue.use(InfiniteScroll)
+ Vue.use(Link)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

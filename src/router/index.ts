@@ -19,13 +19,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "console" */ '../views/console/C-layout.vue'),
     children: croute,
     beforeEnter: (to, from, next) => {
-      consoleHttp.testToken().then(res => {
-        if(res['success'] === 1) {
-          next();
-        }
-      }).catch(err => {
-        next('/login')
-      })
+      next();
     }
   },
   {

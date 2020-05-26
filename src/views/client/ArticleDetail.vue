@@ -26,9 +26,9 @@ export default class ArticleDetail extends Vue {
 
     getData(id) {
         this.loading = true;
-        articleHttp.getOne(id).then(res => {
-        this.article = res.data;
-        this.loading = false;
+        articleHttp.getOne(id).then((res: any) => {
+            this.article = res;
+            this.loading = false;
         })
     }
 }
