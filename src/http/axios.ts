@@ -20,18 +20,11 @@ axios.interceptors.response.use(response => {
   }
   return response;
 }, error => {
-<<<<<<< Updated upstream
-    if (error.response.status === 401) {
-    router.push('/login');
-  }
-  return Promise.reject(error)
-=======
   if(error.response.status === 401) {
     router.push('/login')
   }
   // console.log(error.response)
   return Promise.reject(error.response.data)
->>>>>>> Stashed changes
 })
 
 export default axios;
