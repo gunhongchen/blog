@@ -8,7 +8,7 @@
                 <span class="ml-10">回复</span>
                 <span class="ml-10">{{item.repliedUser.userName}}</span>
               </p>
-              <span class="ml-20">{{item.createdData | date}}</span>
+              <span class="ml-20">{{item.createdTime | date}}</span>
             </div>
             <p class="float-right size-stitle">
               <span @click="showReply(item)">
@@ -23,7 +23,7 @@
             <ReplicesList :replices="item.replicesData"></ReplicesList>
           </div>
           <div v-if="currentReply._id===item._id">
-            <ReplicesTemplate @close="closeReply"></ReplicesTemplate>
+            <ReplicesTemplate @submit="replySubmit" @close="closeReply"></ReplicesTemplate>
           </div>
         </div>
     </div>
@@ -31,6 +31,8 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import ReplicesTemplate from './Replices.vue';
+import * as replyHttp from '../../http/api/reply';
+import {ReplyData} from '@/components/datamodel/Reply';
 
 @Component({
   components: {
@@ -39,92 +41,41 @@ import ReplicesTemplate from './Replices.vue';
   },
 })
 export default class ReplicesList extends Vue {
+  @Prop() currentProject;
   @Prop() replices;
-  currentReply = {};
   loading = false;
-  replicesData = [
-    {
-      _id: 'asdgdfg243',
-      content: 'wtf',
-      createdBy: {
-        _id: 'sdf',
-        userName: 'zhnagsan',
-      },
-      createdData: 1590717114477,
-      publish: true,
-      repliedUser: {
-        _id: 'sdfw',
-        userName: 'lisi'
-      },
-      replyCount: 2,
-      replicesData: [
-        {
-          _id: 'asdgdfg2',
-          content: 'wtf',
-          createdBy: {
-            _id: 'sdf',
-            userName: 'zhnagsan',
-          },
-          createdData: 1590717114477,
-          publish: true,
-          repliedUser: {
-            _id: 'sdfw',
-            userName: 'lisi'
-          }
-        },
-        {
-          _id: 'asdgd243',
-          content: 'wtf',
-          createdBy: {
-            _id: 'sdf',
-            userName: 'zhnagsan',
-          },
-          createdData: 1590717114477,
-          publish: true,
-          repliedUser: {
-            _id: 'sdfw',
-            userName: 'lisi'
-          }
-        }
-      ]
-    },
-    {
-      _id: 'asdgdfg2',
-      content: 'wtf',
-      createdBy: {
-        _id: 'sdf',
-        userName: 'zhnagsan',
-      },
-      createdData: 1590717114477,
-      publish: true,
-      repliedUser: {
-        _id: 'sdfw',
-        userName: 'lisi'
-      }
-    },
-    {
-      _id: 'asdgd243',
-      content: 'wtf',
-      createdBy: {
-        _id: 'sdf',
-        userName: 'zhnagsan',
-      },
-      createdData: 1590717114477,
-      publish: true,
-      repliedUser: {
-        _id: 'sdfw',
-        userName: 'lisi'
-      }
+  currentReply: ReplyData = {};
+  replicesData: Array<ReplyData> = [];
+  mounted() {
+    console.log(this.currentProject)
+    if(this.currentProject && '_id' in this.currentProject) {
+        this.getReplices(this.currentProject._id);
     }
-  ]
-  mount() {
-    this.replicesData = this.replices ? this.replices : this.replicesData;
+  }
+
+  // updated(v) {
+  //   if(this.currentProject && '_id' in this.currentProject) {
+  //       this.getReplices(this.currentProject._id);
+  //   }
+  // }
+
+  getReplices(id) {
+    this.loading = true;
+    replyHttp.getReplices(id).then((res: any) => {
+        this.replicesData = res;
+        this.loading = false;
+    })
   }
   showReply (item) {
     this.currentReply = item;
   }
   closeReply() {
     this.currentReply = {};
+  }
+  replySubmit(v) {
+    replyHttp.comment(this.currentReply._id, v).then(res => {
+      console.log(res)
+    })
   }
 }
 </script>

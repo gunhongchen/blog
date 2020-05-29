@@ -8,7 +8,7 @@
           v-model="textarea">
         </el-input>
         <div class="btn">
-          <el-button type="primary" @click="submit(textarea)">发表评论</el-button>
+          <el-button :loading="loading" type="primary" @click="submit(textarea)">发表评论</el-button>
           <el-button @click="close">取消</el-button>
         </div>
       </div>
@@ -16,12 +16,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit } from 'vue-property-decorator';
+import { Component, Vue, Emit, Prop } from 'vue-property-decorator';
 
 @Component({
   components: {},
 })
 export default class ReplicesTemplate extends Vue {
+  @Prop() loading = false;
   @Emit() close() {
     this.textarea = '';
   };

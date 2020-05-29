@@ -1,18 +1,18 @@
 <template>
     <div class="article-detail">
-        <div class="detail-container">
+        <div class="detail-container" v-loading="loading">
             <div class="detail-head">
                 <p class="title color-1">{{article.title}}</p>
                 <p><span>{{article.createTime | date()}}</span></p>
             </div>
             <mavon-editor v-model="article.content" previewBackground="#fff" :boxShadow="false" :toolbarsFlag="false" :subfield="false" defaultOpen="preview"/>
             <div>
-                <span>回复</span>
-                <span class="ml-10 color-2">共{{0}}条回复</span>
+                <span>评论回复</span>
+                <span class="ml-10 color-2">共{{article.commontCount || 0}}条回复</span>
             </div>
             <div class="replices">
-                <ReplicesTemplate @submit="replySubmit"></ReplicesTemplate>
-                <ReplicesList></ReplicesList>
+                <ReplicesTemplate @submit="replySubmit" :loading="btnLoading"></ReplicesTemplate>
+                <ReplicesList :currentProject="article"></ReplicesList>
             </div>
         </div>
     </div>
@@ -20,9 +20,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import * as articleHttp from '../../../http/api/article';
+import * as replyHttp from '../../../http/api/reply';
 import {Article} from '../../console/article/components/Article';
 import ReplicesTemplate from '@/components/replices/Replices.vue';
-import ReplicesList from '@/components/replices/ReplicesList.vue'
+import ReplicesList from '@/components/replices/ReplicesList.vue';
+import {Message} from 'element-ui';
 
 @Component({
   components: {
@@ -32,8 +34,10 @@ import ReplicesList from '@/components/replices/ReplicesList.vue'
 })
 export default class ArticleDetail extends Vue {
     loading: boolean = false;
-    article: Article = new Article();
-    created() {
+    btnLoading: boolean = false;
+    article: Article = {};
+    articleReplices = [];
+    mounted() {
         this.getData(this.$route.params.id);
     }
 
@@ -45,7 +49,11 @@ export default class ArticleDetail extends Vue {
         })
     }
     replySubmit(v) {
-        console.log(v)
+        this.btnLoading = true;
+        replyHttp.reply(this.$route.params.id, v).then(res => {
+            Message.success('评论成功');
+            this.btnLoading = false;
+        })
     }
 }
 </script>

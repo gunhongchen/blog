@@ -21,10 +21,11 @@ function addData(data: Article) {
 function update(data) {
     return axios.put('/api/article', data, config)
 }
+
 export {
     getList,
     deleteData,
     addData,
     getOne,
-    update
+    update,
 }
