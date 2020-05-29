@@ -37,7 +37,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
 import { Message } from 'element-ui';
-import * as userHttp from '../../../../http/api/user';
+import * as userHttp from '../../../../http/api/console/user';
 
 @Component({
   components: {},

@@ -33,7 +33,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 export default class Header extends Vue {
   @Prop() private title!: string;
   @Prop() private menus: any;
-  activeIndex = '1';
+  activeIndex = this.menus[0].url;
 }
 </script>
 

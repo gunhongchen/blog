@@ -31,7 +31,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
 import {Article} from './Article'
-import * as tagHttp from '../../../../http/api/tags';
+import * as tagHttp from '../../../../http/api/console/tags';
 
 @Component({
   components: {},

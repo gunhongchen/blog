@@ -19,7 +19,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import {Message} from 'element-ui';
-import * as consoleHttp from '../../http/api/console';
+import * as consoleHttp from '../../http/api/auth';
 
 @Component({
   components: {},

@@ -22,7 +22,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import Table from '@/components/Table.vue';
-import * as userHttp from '../../../http/api/user';
+import * as userHttp from '../../../http/api/console/user';
 import {MessageBox, Message } from 'element-ui';
 
 @Component({

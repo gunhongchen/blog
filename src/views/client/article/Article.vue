@@ -13,7 +13,7 @@
                 v-for="(item, index) in articleData"
                 :key="index"
                 :timestamp="item.createTime | date()">
-                <router-link :to="'article-detail/'+item._id">
+                <router-link :to="'/article/' + item._id">
                     <el-card shadow="hover">
                         <h4>{{item.title}}</h4>
                     </el-card>
@@ -27,9 +27,9 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import * as clientHttp from '../../http/api/client';
-import * as articleHttp from '../../http/api/article';
-import { TabaData } from '../../components/datamodel/Table';
+import * as tagsHttp from '../../../http/api/client/tags';
+import * as articleHttp from '../../../http/api/article';
+import { TabaData } from '../../../components/datamodel/Table';
 
 @Component({
   components: {},
@@ -47,7 +47,7 @@ export default class Article extends Vue {
     islast: boolean = false;
     noDataText: string = '没有了';
     created() {
-        clientHttp.getTags().then(res => {
+        tagsHttp.getTags().then(res => {
             this.tagData = res;
             // this.selectedTag = this.tagData[0];
             this.loadData();
@@ -87,12 +87,12 @@ export default class Article extends Vue {
     }
 
     noData() {
-        this.noDataText = '不说了没有了';
+        this.noDataText = '说了没有了';
     }
 }
 </script>
 <style lang="scss" scoped>
-@import '../../assets/styles/public.scss';
+@import '../../../assets/styles/public.scss';
 .article{
     width:100%;
     position:absolute;

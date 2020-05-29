@@ -14,7 +14,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import UserForm from './components/User-form.vue';
 import { Message } from 'element-ui';
-import * as userHttp from '../../../http/api/user';
+import * as userHttp from '../../../http/api/console/user';
 
 @Component({
   components: {

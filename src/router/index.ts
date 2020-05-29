@@ -4,7 +4,7 @@ import Layout from '../views/client/Layout.vue'
 import croute from './console'
 import mroute from './home'
 import notFound from '../views/core/not-found.vue'
-import * as consoleHttp from '../http/api/console'
+import * as consoleHttp from '../http/api/auth'
 
 Vue.use(VueRouter)
 

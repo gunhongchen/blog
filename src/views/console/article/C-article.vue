@@ -13,7 +13,7 @@
             <template  #operation="data">
               <el-button type="text" @click="deleted(data)">删除</el-button>
               <el-divider direction="vertical"></el-divider>
-              <router-link :to="'/console/article/edit/'+data.data._id">
+              <router-link :to="'/console/article/'+data.data._id">
                 <el-button type="text">编辑</el-button>
               </router-link>
             </template>
@@ -44,7 +44,7 @@ import {Article} from './components/Article';
 import Table from '@/components/Table.vue';
 import {MessageBox, Message } from 'element-ui'
 import * as articleHttp from '../../../http/api/article';
-import * as tagHttp from '../../../http/api/tags';
+import * as tagHttp from '../../../http/api/console/tags';
 @Component({
   components: {
     Title,

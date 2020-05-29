@@ -14,7 +14,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import TagForm from './components/Tags-form.vue';
 import { Message } from 'element-ui';
-import * as tagHttp from '../../../http/api/tags';
+import * as tagHttp from '../../../http/api/console/tags';
 
 @Component({
   components: {

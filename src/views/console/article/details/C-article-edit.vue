@@ -1,6 +1,6 @@
 <template>
   <div class="c-article-edit">
-      <Title :title="'编辑文章'" backurl="/console/article"></Title>
+      <Title :title="'文章信息'"></Title>
       <div class="article-content p-20">
         <el-card class="box-card" v-loading="loading">
           <ArticleForm @submit="submit" :isLoading="isLoading" :article="article"></ArticleForm>
@@ -12,9 +12,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
-import ArticleForm from './components/Article-form.vue';
-import * as articleHttp from '../../../http/api/article';
-import { Article } from './components/Article';
+import ArticleForm from '../components/Article-form.vue';
+import * as articleHttp from '../../../../http/api/article';
+import { Article } from '../components/Article';
 import { Message } from 'element-ui'
 
 @Component({
@@ -32,8 +32,8 @@ export default class CArticleEdit extends Vue {
   }
   getData(id) {
     this.loading = true;
-    articleHttp.getOne(id).then(res => {
-      this.article = res.data;
+    articleHttp.getOne(id).then((res: any) => {
+      this.article = res;
       this.loading = false;
     })
   }
@@ -54,6 +54,6 @@ export default class CArticleEdit extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/styles/public.scss';
+@import '../../../../assets/styles/public.scss';
     
 </style>

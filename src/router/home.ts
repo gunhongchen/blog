@@ -8,14 +8,14 @@ const mroute = [
   },
   {
     path: 'article',
-    name: 'article',
-    component: () => import(/* webpackChunkName: "article" */ '../views/client/Article.vue')
+    name: 'articleList',
+    component: () => import(/* webpackChunkName: "article" */ '../views/client/article/Article.vue')
   },
   {
-    path: 'article-detail/:id',
+    path: 'article/:id',
     name: 'articleDetail',
-    component: () => import(/* webpackChunkName: "articleDetail" */ '../views/client/ArticleDetail.vue')
-  },
+    component: () => import(/* webpackChunkName: "articleDetail" */ '../views/client/article/ArticleDetail.vue')
+  }
 ];
 
 export default mroute;
