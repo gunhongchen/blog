@@ -22,7 +22,7 @@ import { Component, Vue, Emit, Prop } from 'vue-property-decorator';
   components: {},
 })
 export default class ReplicesTemplate extends Vue {
-  @Prop() loading = false;
+  @Prop() loading;
   @Emit() close() {
     this.textarea = '';
   };

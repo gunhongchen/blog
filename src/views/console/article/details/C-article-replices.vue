@@ -3,7 +3,6 @@
         <Title :title="'讨论列表'"></Title>
         <div class="p-20">
           <el-card class="box-card" v-loading="loading">
-            
           </el-card>
         </div>
     </div>
@@ -12,10 +11,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
+import Table from '@/components/Table.vue';
+import * as replyHttp from '../../../../http/api/console/reply';
 
 @Component({
   components: {
-    Title
+    Title,
+    Table
   },
 })
 export default class CArticleReplices extends Vue {

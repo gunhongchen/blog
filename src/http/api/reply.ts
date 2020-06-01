@@ -1,20 +1,25 @@
 import axios from '../axios';
 
 // 评论
-function reply(targetId, content) {
+function comment(targetId, content) {
     return axios.post(`/api/commont/${targetId}/replices`, {content})
 }
 // 获取评论
-function getReplices(targetId) {
+function getComments(targetId) {
     return axios.get(`/api/commont/${targetId}/replices`)
 }
 // 回复
-function comment( commentId, content) {
-    return axios.post(`/api/reply/replices/${commentId}`, {content})
+function reply( targetId, content, targetReplyId?) {
+    return axios.post(`/api/reply/replices/${targetId}`, {content, targetReplyId: targetReplyId || ''})
+}
+// 获取回复
+function getReplices(targetId) {
+    return axios.get(`/api/reply/replices/${targetId}`)
 }
 
 export {
     reply,
     getReplices,
-    comment
+    comment,
+    getComments
 }

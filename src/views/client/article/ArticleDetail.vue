@@ -8,11 +8,11 @@
             <mavon-editor v-model="article.content" previewBackground="#fff" :boxShadow="false" :toolbarsFlag="false" :subfield="false" defaultOpen="preview"/>
             <div>
                 <span>评论回复</span>
-                <span class="ml-10 color-2">共{{article.commontCount || 0}}条回复</span>
+                <span class="ml-10 color-2">共{{article.commontCount || 0}}条评论</span>
             </div>
             <div class="replices">
                 <ReplicesTemplate @submit="replySubmit" :loading="btnLoading"></ReplicesTemplate>
-                <ReplicesList :currentProject="article"></ReplicesList>
+                <ReplicesList :currentProject="article" :isReplied="isReplied"></ReplicesList>
             </div>
         </div>
     </div>
@@ -37,6 +37,7 @@ export default class ArticleDetail extends Vue {
     btnLoading: boolean = false;
     article: Article = {};
     articleReplices = [];
+    isReplied = false;
     mounted() {
         this.getData(this.$route.params.id);
     }
@@ -50,8 +51,9 @@ export default class ArticleDetail extends Vue {
     }
     replySubmit(v) {
         this.btnLoading = true;
-        replyHttp.reply(this.$route.params.id, v).then(res => {
+        replyHttp.comment(this.$route.params.id, v).then(res => {
             Message.success('评论成功');
+            this.isReplied = !this.isReplied;
             this.btnLoading = false;
         })
     }

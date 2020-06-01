@@ -1,6 +1,6 @@
 <template>
     <div class="table">
-        <div class="el-table el-table--fit el-table--striped el-table--enable-row-hover el-table--enable-row-transition" style="width:100%">
+        <div v-loading="loading" class="el-table el-table--fit el-table--striped el-table--enable-row-hover el-table--enable-row-transition" style="width:100%">
             <div class="el-table__header-wrapper">
                 <table class="el-table__header" style="width:100%">
                     <thead>
@@ -54,6 +54,7 @@ import { TabaData } from './datamodel/Table';
     export default class Table extends Vue {
         @Prop() tableData;
         @Prop() columns;
+        @Prop() loading;
         @Emit() loadData(v: TabaData) {};
         pagination: TabaData = {};
         tabledata: [] = [];
