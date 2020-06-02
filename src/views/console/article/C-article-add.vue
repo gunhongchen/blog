@@ -13,7 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import ArticleForm from './components/Article-form.vue';
-import * as articleHttp from '../../../http/api/article';
+import * as articleHttp from '../../../http/api/console/article';
 import { Message } from 'element-ui'
 
 @Component({
@@ -27,7 +27,7 @@ export default class CArticleAdd extends Vue {
   isLoading: boolean = false;
   submit(v) {
     this.isLoading = true;
-    articleHttp.addData({content: v.content, title: v.title, tag: v.tag, codeHtml: v.codeHtml}).then((res) => {
+    articleHttp.addData(v).then((res) => {
       Message.success('添加成功')
       this.$router.push({path: '/console/article'})
       this.isLoading = false;

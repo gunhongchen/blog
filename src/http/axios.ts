@@ -7,7 +7,7 @@ import router from '../router'
 // 请求拦截器：在发送请求前拦截
 // axios.interceptors.request.use(config => {
 //   console.log('请求发送前拦截')
-//   // config.headers.common['AccessToken'] = window.localStorage.getItem('_token') || ''
+//   // config.headers.commen['AccessToken'] = window.localStorage.getItem('_token') || ''
 //   return config;
 // }, error => {
 //   return Promise.reject(error)

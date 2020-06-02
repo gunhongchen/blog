@@ -2,11 +2,11 @@ import axios from '../axios';
 
 // 评论
 function comment(targetId, content) {
-    return axios.post(`/api/commont/${targetId}/replices`, {content})
+    return axios.post(`/api/comment/${targetId}/replices`, {content})
 }
 // 获取评论
 function getComments(targetId) {
-    return axios.get(`/api/commont/${targetId}/replices`)
+    return axios.get(`/api/comment/${targetId}/replices`)
 }
 // 回复
 function reply( targetId, content, targetReplyId?) {

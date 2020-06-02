@@ -41,7 +41,9 @@ import {
   Timeline,
   TimelineItem,
   InfiniteScroll,
-  Link
+  Link,
+  Popconfirm,
+  Switch
  } from 'element-ui'
 
  Vue.use(Row)
@@ -71,6 +73,8 @@ import {
  Vue.use(TimelineItem)
  Vue.use(InfiniteScroll)
  Vue.use(Link)
+ Vue.use(Switch)
+ Vue.use(Popconfirm)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

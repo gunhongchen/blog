@@ -43,7 +43,7 @@ import Title from '@/components/Title.vue';
 import {Article} from './components/Article';
 import Table from '@/components/Table.vue';
 import {MessageBox, Message } from 'element-ui'
-import * as articleHttp from '../../../http/api/article';
+import * as articleHttp from '../../../http/api/console/article';
 import * as tagHttp from '../../../http/api/console/tags';
 @Component({
   components: {

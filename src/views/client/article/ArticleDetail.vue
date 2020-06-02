@@ -6,14 +6,16 @@
                 <p><span>{{article.createTime | date()}}</span></p>
             </div>
             <mavon-editor v-model="article.content" previewBackground="#fff" :boxShadow="false" :toolbarsFlag="false" :subfield="false" defaultOpen="preview"/>
-            <div>
-                <span>评论回复</span>
-                <span class="ml-10 color-2">共{{article.commontCount || 0}}条评论</span>
-            </div>
-            <div class="replices">
-                <ReplicesTemplate @submit="replySubmit" :loading="btnLoading"></ReplicesTemplate>
-                <ReplicesList :currentProject="article" :isReplied="isReplied"></ReplicesList>
-            </div>
+            <template v-if="article.canReply">
+                <div>
+                    <span>评论回复</span>
+                    <span class="ml-10 color-2">共{{article.commentCount || 0}}条评论</span>
+                </div>
+                <div class="replices">
+                    <ReplicesTemplate @submit="replySubmit" :loading="btnLoading"></ReplicesTemplate>
+                    <ReplicesList :currentProject="article" :isReplied="isReplied"></ReplicesList>
+                </div>
+            </template>
         </div>
     </div>
 </template>
@@ -53,6 +55,7 @@ export default class ArticleDetail extends Vue {
         this.btnLoading = true;
         replyHttp.comment(this.$route.params.id, v).then(res => {
             Message.success('评论成功');
+            this.getData(this.$route.params.id);
             this.isReplied = !this.isReplied;
             this.btnLoading = false;
         })
@@ -61,9 +64,12 @@ export default class ArticleDetail extends Vue {
 </script>
 <style lang="scss" scoped>
 @import '../../../assets/styles/public.scss';
+.article-detail{
+    padding-top: 20px;
+}
 .detail-container{
     width: 80%;
-    margin: 20px auto 0;
+    margin: 0 auto;
     .detail-head{
         .title{
             font-size:1.8em;

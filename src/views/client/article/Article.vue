@@ -8,21 +8,27 @@
             </ul>
         </el-card>
         <el-card class="list" shadow="never">
-            <el-timeline> 
-                <el-timeline-item
-                v-for="(item, index) in articleData"
-                :key="index"
-                :timestamp="item.createTime | date()">
-                <router-link :to="'/article/' + item._id">
-                    <el-card shadow="hover">
-                        <h4>{{item.title}}</h4>
-                    </el-card>
-                </router-link>
-                </el-timeline-item>
-            </el-timeline>
-            <p class="cursor-p" v-if="!islast" @click="loadData(1)">点击加载更多<i v-if="isloading" class="el-icon-loading"></i></p>
-            <!-- <p v-if="islast" @click="noData">{{noDataText}}</p> -->
+            <template v-if="articleData.length>0">
+                <el-timeline> 
+                    <el-timeline-item
+                    v-for="(item, index) in articleData"
+                    :key="index"
+                    :timestamp="item.createTime | date()">
+                    <router-link :to="'/article/' + item._id">
+                        <el-card shadow="hover">
+                            <h4>{{item.title}}</h4>
+                        </el-card>
+                    </router-link>
+                    </el-timeline-item>
+                </el-timeline>
+                <p class="cursor-p" v-if="!islast" @click="loadData(1)">点击加载更多<i v-if="isloading" class="el-icon-loading"></i></p>
+                <!-- <p v-if="islast" @click="noData">{{noDataText}}</p> -->
+            </template>
+            <template v-else>
+                <p class="text-center color-2">暂无数据</p>
+            </template>
         </el-card>
+        
     </div>
 </template>
 <script lang="ts">

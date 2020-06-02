@@ -15,6 +15,10 @@
 .size-base{
     font-size:14px;
 }
+//align
+.text-center{
+    text-align: center;
+}
 //color
 .color-1{
     color: #303133
@@ -27,6 +31,12 @@
 }
 .color-3{
     color: #C0C4CC
+}
+.color-active{
+    color: #409EFF;
+}
+.color-danger{
+    color: #F56C6C;
 }
 $color-1: #DCDFE6;
 $color-2: #E4E7ED;
@@ -70,6 +80,9 @@ $color-link: #409EFF;
 }
 .inline-block{
     display: inline-block;
+}
+.cursor-pointer{
+    cursor: pointer;
 }
 
 // 鼠标样式

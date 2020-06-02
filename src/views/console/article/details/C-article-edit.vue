@@ -13,7 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import ArticleForm from '../components/Article-form.vue';
-import * as articleHttp from '../../../../http/api/article';
+import * as articleHttp from '../../../../http/api/console/article';
 import { Article } from '../components/Article';
 import { Message } from 'element-ui'
 
@@ -27,7 +27,7 @@ export default class CArticleEdit extends Vue {
   isLoading: boolean = false;
   loading: boolean = false;
   article: Article = new Article();
-  created() {
+  mounted() {
     this.getData(this.$route.params.id);
   }
   getData(id) {
@@ -45,6 +45,8 @@ export default class CArticleEdit extends Vue {
     formData.append('content', v.content)
     formData.append('title', v.title)
     formData.append('tag', v.tag)
+    formData.append('publish', v.publish)
+    formData.append('canReply', v.canReply)
     articleHttp.update(formData).then((res) => {
       Message.success('保存成功')
       this.isLoading = false;
