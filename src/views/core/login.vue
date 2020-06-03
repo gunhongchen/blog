@@ -2,10 +2,17 @@
     <div class="login">
         <el-form ref="form" :model="form" >
             <el-form-item label="用户名" prop="userName">
-              <el-input v-model="form.userName" clearable></el-input>
+              <el-input 
+                v-model="form.userName" 
+                clearable 
+                @keyup.enter.native="onSubmit"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input v-model="form.password" type="password" clearable></el-input>
+              <el-input 
+                v-model="form.password" 
+                type="password" 
+                @keyup.enter.native="onSubmit" 
+                clearable></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onSubmit" :loading="isloading">登陆</el-button>

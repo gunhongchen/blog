@@ -43,7 +43,9 @@ import {
   InfiniteScroll,
   Link,
   Popconfirm,
-  Switch
+  Switch,
+  Dialog,
+  Upload
  } from 'element-ui'
 
  Vue.use(Row)
@@ -74,7 +76,9 @@ import {
  Vue.use(InfiniteScroll)
  Vue.use(Link)
  Vue.use(Switch)
+ Vue.use(Dialog)
  Vue.use(Popconfirm)
+ Vue.use(Upload)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

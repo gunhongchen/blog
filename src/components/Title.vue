@@ -7,6 +7,9 @@
                 <p >返回列表</p>
             </router-link>
         </div>
+        <div class="float-right">
+            <slot name="btn"></slot>
+        </div>
       </div>
       <div class="line"></div>
   </div>

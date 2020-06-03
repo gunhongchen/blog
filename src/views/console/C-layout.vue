@@ -18,8 +18,9 @@ export default class CLayout extends Vue {
   title = '管理';
   menus =  [
     {name: '文章管理', url:'/console/article'},
+    {name: '图集管理', url:'/console/album'},
     {name: '标签管理', url:'/console/tags'},
-    {name: '用户管理', url:'/console/user'}
+    {name: '用户管理', url:'/console/user'},
   ];
 }
 </script>

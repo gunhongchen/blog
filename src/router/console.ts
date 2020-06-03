@@ -7,10 +7,17 @@ const croute = [
         children: [
             { path: '', name: 'c-article', component: () => import(/* webpackChunkName: "article" */ '../views/console/article/C-article.vue') },
             { path: 'add', name: 'articleAdd', component: () => import(/* webpackChunkName: "articleAdd" */ '../views/console/article/C-article-add.vue') },
-            { path: ':id', name: 'articleDetails', component: () => import(/* webpackChunkName: "articleDetails" */ '../views/console/article/details/C-article-details.vue'), children: [
+            { path: ':id', component: () => import(/* webpackChunkName: "articleDetails" */ '../views/console/article/details/C-article-details.vue'), children: [
                 { path: '', name: 'articleEdit', component: () => import(/* webpackChunkName: "articleEdit" */ '../views/console/article/details/C-article-edit.vue') },
                 {path: 'replices', name: 'articleReplices', component: () => import(/* webpackChunkName: "articleReplices" */ '../views/console/article/details/C-article-replices.vue')}
             ]},
+        ]
+    },
+    {
+        path: 'album',
+        component: () => import(/* webpackChunkName: "album" */ '../views/console/album/C-album-layout.vue'),
+        children: [
+            { path: '', name: 'c-album', component: () => import(/* webpackChunkName: "album" */ '../views/console/album/C-album.vue') },
         ]
     },
     {

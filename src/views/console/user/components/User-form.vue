@@ -43,8 +43,8 @@ import * as userHttp from '../../../../http/api/console/user';
   components: {},
 })
 export default class UserForm extends Vue {
-    @Prop() private user;
-    @Emit() submit(n: string){ }
+    @Prop() user;
+    @Emit() submit(n){ }
     @Prop() isloading!: boolean;
     form= this.user || {userName: '',password: '',power: ''};
     options = [

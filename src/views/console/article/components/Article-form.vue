@@ -61,6 +61,7 @@ import {Article} from './Article'
 import * as tagHttp from '../../../../http/api/console/tags';
 import * as articleHttp from '../../../../http/api/console/article';
 import * as qiniu from 'qiniu-js';
+import mavonEditor from 'mavon-editor';
 
 @Component({
   components: {},
@@ -102,8 +103,9 @@ export default class ArticleForm extends Vue {
 
     // 绑定@imgAdd event
     imgAdd(pos, $file){
+      const that = this;
       articleHttp.uploadImgToken().then(token => {
-        qiniu.upload($file, $file.name, token, {
+        qiniu.upload($file, $file.name , token, {
           fname: "",
           params: {},
           mimeType: null
@@ -118,23 +120,10 @@ export default class ArticleForm extends Vue {
           error(err){
           }, 
           complete(res){
-            console.log(res)
+            that.$refs.md['$img2Url'](pos, res.imgUrl);
           }
         })
       })
-        // 第一步.将图片上传到服务器.
-        // var formdata = new FormData();
-        // formdata.append('image', $file);
-        // articleHttp.uploadImg(formdata).then((url) => {
-        //     // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-        //     /**
-        //    * $vm 指为mavonEditor实例，可以通过如下两种方式获取
-        //    * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
-        //    * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
-        //    */
-        //     // this.$refs.md.$img2Url(pos, url);
-        //     console.log(url)
-        // })
     }
 }
 </script>
