@@ -4,7 +4,10 @@
             <el-row :gutter="24">
                 <el-col :span="20" :offset="2">
                     <el-form-item label="名称" prop="name">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.name" :disabled="form.type=='FILE'"></el-input>
+                    </el-form-item>
+                    <el-form-item label="描述" prop="description">
+                        <el-input type="textarea" v-model="form.description"></el-input>
                     </el-form-item>
                     <el-form-item label="文件类型" prop="type">
                         <el-select v-model="form.type" placeholder="请选择">
@@ -62,13 +65,18 @@ export default class AlbumForm extends Vue {
     };
     fileList = [];
     onSubmit() {
-        if(this.form.type=='FILE' && this.fileList.length < 1) {
-            Message.error('请上传图片');
+        if(this.form.type=='FOLDER'&&!this.form.name){
+            Message.error('名称必填');
             return;
         }
-        this.form.fileList = this.fileList;
-        console.log(this.form);
-        // this.submit(this.form);
+        if(this.form.type=='FILE') {
+            if(this.fileList.length < 1) {
+                Message.error('请上传图片');
+                return;
+            }
+            this.form.fileList = this.fileList;
+        }
+        this.submit(this.form);
     }
     cancel() {
         this.$parent.$parent['visible'] = false;

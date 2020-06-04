@@ -20,7 +20,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
 import AlbumTree from './components/album-tree.vue';
 import AlbumForm from './components/album-form.vue';
@@ -38,52 +38,27 @@ export default class CAlbum extends Vue {
   loading = false;
   visible = false;
   submit(v) {
+    v.parentId = 0;
     albumHttp.addAlbum(v).then(res => {
+      this.getAlbum(0);
       Message.success('添加成功');
+      this.visible = false;
     })
   }
-  fileData = [
-        {
-            _id: '11',
-            type: 'FOLDER',
-            name: '图集1',
-            createTime: new Date().getTime(),
-            publish: true,
-            children: [
-                {
-                    _id: '1s1',
-                    type: 'FILE',
-                    name: '文件1-11',
-                    createTime: new Date().getTime(),
-                    publish: true
-                },
-                {
-                    _id: '1s1a',
-                    type: 'FOLDER',
-                    name: '图集1-1',
-                    createTime: new Date().getTime(),
-                    publish: true,
-                    children: [
-                        {
-                            _id: '1s1d',
-                            type: 'FILE',
-                            name: '文件1-1-11',
-                            createTime: new Date().getTime(),
-                            publish: true
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            _id: '1s1e',
-            type: 'FILE',
-            name: '文件11',
-            createTime: new Date().getTime(),
-            publish: true
-        }
-    ];
+  fileData = [];
+  @Watch('fileData')
+  fileDataChange() {
+    this.getAlbum(0)
+  }
+  created() {
+    this.getAlbum(0);
+  }
 
+  getAlbum(id) {
+    albumHttp.getAlbum(id).then((res: any) => {
+      this.fileData = res;
+    })
+  }
 }
 </script>
 <style lang="scss" scoped>
