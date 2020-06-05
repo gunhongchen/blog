@@ -22,8 +22,7 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class Home extends Vue {
   homeNav: Array<{}> = [
     {name: 'article', url: '/article'},
-    {name: 'article', url: '/article'},
-    {name: 'article', url: '/article'},
+    {name: 'album', url: '/album'},
   ]
 }
 </script>

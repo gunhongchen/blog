@@ -26,7 +26,9 @@
                         </template>
                     </el-popconfirm>
                     <el-divider direction="vertical"></el-divider>
-                    <i class="el-icon-edit color-3 size-main cursor-pointer"></i>
+                    <i 
+                        class="el-icon-edit color-3 size-main cursor-pointer"
+                        @click="showAddModal(item,1)"></i>
                     <template v-if="item.type=='FOLDER'">
                         <el-divider direction="vertical"></el-divider>
                         <i 
@@ -45,7 +47,7 @@
                 </div>
             </div>
             <div class="folder-children" v-if="item.type=='FOLDER'&&item.children&&item.children.length>0&&opened.indexOf(item._id)>-1">
-                <AlbumTree :fileData="item.children"></AlbumTree>
+                <AlbumTree :fileData="item.children" @deleted="childDeleted"></AlbumTree>
             </div>
         </div>
         <div class="text-center" v-if="fileData.length < 1">
@@ -57,12 +59,12 @@
             :visible.sync="visible" 
             :destroy-on-close="true" 
             :close-on-click-modal="false">
-            <AlbumForm @submit="submit"></AlbumForm>
+            <AlbumForm @submit="submit" :album="editdata"></AlbumForm>
         </el-dialog>
     </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch, Emit } from 'vue-property-decorator';
 import {Album} from './Album';
 import AlbumForm from './album-form.vue';
 import * as albumHttp from '../../../../http/api/console/album';
@@ -78,27 +80,37 @@ export default class AlbumTree extends Vue {
     visible: boolean = false;
     currentFolder: Album = {};
     loading: boolean = false;
+    editdata: Album | null = null;
     @Prop() fileData;
+    @Emit() deleted(v,index){};
     treeFileData = this.fileData;
-    @Watch('treeFileData')
-    treeFileDataChange() {
-        console.log(111)
-        this.$emit('update:fileData', this.treeFileData);
-    }
     deleteData(v, index) {
+        if(v.childCount>0) {
+            Message.warning('该文件夹下包含其他文件，不支持删除');
+            return;
+        }
         this.loading = true;
         albumHttp.deleteAlbum(v._id).then(res => {
-            this.treeFileData.splice(index, 1);
+            this.deleted(v,index);
             Message.success('删除成功');
             this.loading = false;
         })
     }
-    showAddModal(item) {
+    childDeleted(v,index){
+        this.fileData.find(f=> {
+            return f._id==v.parentId;
+        }).children.splice(index,1).childCount=0;
+    }
+    showAddModal(item,isEdit?) {
+        if(isEdit){
+            this.editdata = item;
+        }
         this.currentFolder = item;
         this.visible = true;
     }
     modalClosed() {
         this.currentFolder = {};
+        this.editdata = null;
     }
     getAlbum(id) {
         this.loading = true;
@@ -111,11 +123,22 @@ export default class AlbumTree extends Vue {
             this.loading = false;
         })
     }
-    submit(v) {
+    submit(v,isEdit) {
+        if(isEdit) {
+            albumHttp.editAlbum(v).then(res => {
+                v=res;
+                Message.success('编辑成功');
+                this.visible = false;
+            });
+            return;
+        }
         v.parentId = this.currentFolder._id;
         albumHttp.addAlbum(v).then(res => {
-            this.opened.push(this.currentFolder._id);
+            if(this.opened.indexOf(this.currentFolder._id)<0){
+                this.opened.push(this.currentFolder._id);
+            }
             this.getAlbum(this.currentFolder._id);
+            Message.success('添加成功');
             this.visible = false;
         })
     }

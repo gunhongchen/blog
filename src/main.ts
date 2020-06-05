@@ -14,71 +14,9 @@ import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
 // elementUI
-import {
-  Row,
-  Col,
-  Card,
-  Container,
-  Aside,
-  Menu,
-  Submenu,
-  MenuItem,
-  MenuItemGroup,
-  Main,
-  Table,
-  Header,
-  Button,
-  TableColumn,
-  Form,
-  FormItem,
-  Input,
-  Select,
-  Option,
-  Loading,
-  Pagination,
-  Popover,
-  Divider,
-  Timeline,
-  TimelineItem,
-  InfiniteScroll,
-  Link,
-  Popconfirm,
-  Switch,
-  Dialog,
-  Upload
- } from 'element-ui'
-
- Vue.use(Row)
- Vue.use(Col)
- Vue.use(Card)
- Vue.use(Container)
- Vue.use(Aside)
- Vue.use(Menu)
- Vue.use(Submenu)
- Vue.use(MenuItem)
- Vue.use(MenuItemGroup)
- Vue.use(Main)
- Vue.use(Table)
- Vue.use(TableColumn)
- Vue.use(Button)
- Vue.use(Form)
- Vue.use(FormItem)
- Vue.use(Input)
- Vue.use(Select)
- Vue.use(Option)
- Vue.use(Loading)
- Vue.use(Pagination)
- Vue.use(Popover)
- Vue.use(Divider)
- Vue.use(Header)
- Vue.use(Timeline)
- Vue.use(TimelineItem)
- Vue.use(InfiniteScroll)
- Vue.use(Link)
- Vue.use(Switch)
- Vue.use(Dialog)
- Vue.use(Popconfirm)
- Vue.use(Upload)
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

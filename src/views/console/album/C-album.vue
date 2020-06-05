@@ -7,7 +7,7 @@
       </Title>
       <div class="article-content p-20">
         <el-card class="box-card" v-loading="loading">
-          <AlbumTree :fileData="fileData"></AlbumTree>
+          <AlbumTree :fileData="fileData" @deleted="childDeleted"></AlbumTree>
         </el-card>
       </div>
       <el-dialog 
@@ -26,6 +26,7 @@ import AlbumTree from './components/album-tree.vue';
 import AlbumForm from './components/album-form.vue';
 import * as albumHttp from '../../../http/api/console/album';
 import {Message} from 'element-ui';
+import {Album} from './components/Album';
 
 @Component({
   components: {
@@ -45,11 +46,7 @@ export default class CAlbum extends Vue {
       this.visible = false;
     })
   }
-  fileData = [];
-  @Watch('fileData')
-  fileDataChange() {
-    this.getAlbum(0)
-  }
+  fileData: Array<Album> = [];
   created() {
     this.getAlbum(0);
   }
@@ -58,6 +55,10 @@ export default class CAlbum extends Vue {
     albumHttp.getAlbum(id).then((res: any) => {
       this.fileData = res;
     })
+  }
+
+  childDeleted(v,index){
+    this.fileData.splice(index,1);
   }
 }
 </script>

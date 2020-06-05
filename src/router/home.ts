@@ -15,7 +15,12 @@ const mroute = [
     path: 'article/:id',
     name: 'articleDetail',
     component: () => import(/* webpackChunkName: "articleDetail" */ '../views/client/article/ArticleDetail.vue')
-  }
+  },
+  {
+    path: 'album',
+    name: 'albumList',
+    component: () => import(/* webpackChunkName: "album" */ '../views/client/album/Album.vue')
+  },
 ];
 
 export default mroute;

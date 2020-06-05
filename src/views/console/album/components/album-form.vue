@@ -9,7 +9,7 @@
                     <el-form-item label="描述" prop="description">
                         <el-input type="textarea" v-model="form.description"></el-input>
                     </el-form-item>
-                    <el-form-item label="文件类型" prop="type">
+                    <el-form-item label="文件类型" prop="type" v-if="!album">
                         <el-select v-model="form.type" placeholder="请选择">
                             <el-option :key="'FOLDER'" :label="'图集'" value="FOLDER"></el-option>
                             <el-option :key="'FILE'" :label="'图片'" value="FILE"></el-option>
@@ -26,7 +26,7 @@
                             inactive-color="#ff4949">
                         </el-switch>
                     </el-form-item>
-                    <el-form-item label="上传图片" prop="imgs" v-if="form.type=='FILE'">
+                    <el-form-item label="上传图片" prop="imgs" v-if="form.type=='FILE'&&!album">
                         <Upload :multiple="true" :fileList.sync="fileList"></Upload>
                     </el-form-item>
                     <el-form-item>
@@ -52,7 +52,7 @@ import { Message } from 'element-ui';
 export default class AlbumForm extends Vue {
     @Prop() album;
     @Prop() loading;
-    @Emit() submit(v) {};
+    @Emit() submit(v,isEdit?) {};
     @Watch('album')
     albumChange() {
         this.form = this.album || new Album();
@@ -69,14 +69,14 @@ export default class AlbumForm extends Vue {
             Message.error('名称必填');
             return;
         }
-        if(this.form.type=='FILE') {
+        if(this.form.type=='FILE'&&!this.album) {
             if(this.fileList.length < 1) {
                 Message.error('请上传图片');
                 return;
             }
             this.form.fileList = this.fileList;
         }
-        this.submit(this.form);
+        this.submit(this.form,this.album && this.album._id);
     }
     cancel() {
         this.$parent.$parent['visible'] = false;
