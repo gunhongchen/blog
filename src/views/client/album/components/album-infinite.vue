@@ -3,11 +3,11 @@
         <div class="album-box mt-20 mb-20">
             <div class="album-single" v-for="item in albums" :key="item._id">
                 <div class="img">
-                    <img :src="item.imgUrl || item.defaultImg || '/static/images/albums.jpg'" alt="">
+                    <img :src="item.imgUrl || item.defaultImg || '/images/albums.jpg'" alt="">
                 </div>
                 <div>
-                    <p>{{item.name}}</p>
-                    <p>{{item.createdTime | date}}</p>
+                    <p class="size-title color-2">{{item.name}}</p>
+                    <p class="color-3">{{item.createdTime | date}}</p>
                 </div>
             </div>
         </div>

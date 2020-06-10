@@ -2,12 +2,16 @@
   <div class="home  color-2">
       <el-row :gutter="10" :type="'flex'" :justify="'center'">
         <el-col :span="22">
-          <p>我思故我在</p>
-          <span v-for="(item,i) of homeNav" :key="i">
-            <router-link :to="item.url" class="navitem">
-              {{item.name}}
-            </router-link>
-          </span>
+          <p class="navitem mb-10" v-for="(item,i) of homeNav" :key="i">
+            <template v-if="item.url">
+              <router-link :to="item.url" class="color-link size-title">
+                {{item.name}}
+              </router-link>
+            </template>
+            <template v-else>
+              <span class="size-title color-2">{{item.name}}</span>
+            </template>
+          </p>
         </el-col>
       </el-row>
   </div>
@@ -22,6 +26,7 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class Home extends Vue {
   homeNav: Array<{}> = [
     {name: 'article', url: '/article'},
+    {name: '我思故我在'},
     {name: 'album', url: '/album'},
   ]
 }
@@ -35,8 +40,7 @@ export default class Home extends Vue {
     transform: translateY(-50%);
     text-align: center;
   }
-  .navitem{
-    color:$color-link;
+  .nav-item{
   }
   .nav{
     background-color:rgba(200,200,200,.5);
