@@ -10,7 +10,8 @@ module.exports = {
                 //     "^/api": '/api'
                 // }
             }
-        }
+        },
+        disableHostCheck: true
     },
     runtimeCompiler: true
 }

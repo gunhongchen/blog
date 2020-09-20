@@ -102,7 +102,7 @@ export default class Article extends Vue {
 .article{
     width:100%;
     position:absolute;
-    top:50px;
+    top:100px;
     bottom: 0;
     perspective: 1000px;
     transition: 1s;

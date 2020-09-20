@@ -1,6 +1,6 @@
 <template>
     <div class="album">
-        <AlbumCarousel></AlbumCarousel>
+        <!-- <AlbumCarousel></AlbumCarousel> -->
         <div class="album-box">
           <AlbumInfinite></AlbumInfinite>
         </div>

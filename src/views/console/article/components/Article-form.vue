@@ -6,6 +6,9 @@
             <el-form-item label="标题" prop="title">
               <el-input v-model="form.title"></el-input>
             </el-form-item>
+            <el-form-item label="封面" prop="cover">
+              <el-input v-model="form.cover"></el-input>
+            </el-form-item>
             <el-form-item label="内容" prop="content">
               <mavon-editor 
                 ref="md"

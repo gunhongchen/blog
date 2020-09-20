@@ -24,6 +24,8 @@ Vue.config.productionTip = false
 Vue.filter('date', function (v, format) {
   if (!format) {
     return new Date(v).toLocaleString()
+  } else {
+    return new Date(v).toLocaleDateString();
   }
 })
 new Vue({

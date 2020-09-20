@@ -47,6 +47,7 @@ export default class CArticleEdit extends Vue {
     formData.append('tag', v.tag)
     formData.append('publish', v.publish)
     formData.append('canReply', v.canReply)
+    formData.append('cover', v.cover)
     articleHttp.update(formData).then((res) => {
       Message.success('保存成功')
       this.isLoading = false;

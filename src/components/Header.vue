@@ -43,9 +43,10 @@ export default class Header extends Vue {
       display:flex;
       align-items: center;
       background-color: $color-4;
-      padding:0px 50px;
+      padding:0 50px;
       background-color: #fff;
-      border-bottom: 1px solid $color-1;
+      // border-bottom: 1px solid $color-1;
+      box-shadow: 0 0 5px 5px rgba(0,0,0,.1);
     }
     .title{
       margin-right: 20px;
