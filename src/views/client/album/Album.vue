@@ -17,7 +17,9 @@ import AlbumInfinite from './components/album-infinite.vue';
     AlbumInfinite
   },
 })
-export default class Album extends Vue {}
+export default class Album extends Vue {
+  
+}
 </script>
 <style lang="scss" scoped>
 @import '../../../assets/styles/public.scss';

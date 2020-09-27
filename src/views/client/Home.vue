@@ -17,12 +17,16 @@
 
       <div class="container p-20 overflow-hidden">
         <div class="articles float-left">
-          <div class="articlebox" v-for="(item, i) of articleData" :key="i" :class="{'float-left': i%2 !=0, 'float-right': i%2 == 0}">
-            <div class="cover" v-if="item.cover">
-              <img :src="item.cover" alt="">
-            </div>
+          <div class="articlebox" v-for="(item, i) of articleData" :key="i">
+            <router-link :to="'/article/'+item._id">
+              <div class="cover" v-if="item.cover">
+                <img :src="item.cover" alt="">
+              </div>
+            </router-link>
             <div class="article-info">
-              <h4 class="title mb-10 mt-10">{{item.title}}</h4>
+              <router-link :to="'/article/'+item._id">
+                <h4 class="title mb-10 mt-10 color-2">{{item.title}}</h4>
+              </router-link>
               <p>
                 <span v-if="item.tag">
                   <i class="el-icon-price-tag"></i>
@@ -35,7 +39,6 @@
               </p>
             </div>
           </div>
-          <div class="clearfix"></div>
           <el-pagination
             :total="pagination.total"
             :current-page="pagination.currentPage"
@@ -53,13 +56,18 @@
         <div class="info float-right">
           <div class="tag-box">
             <el-divider content-position="left">所有标签</el-divider>
-            <div class="tag inline-block" v-for="(item, i) of tags" :key="i">
-              <el-tag>
-                <i class="el-icon-price-tag"></i>
-                <span>{{item.name}}</span>
-                <span class="ml-10">{{item.count}}</span>
-              </el-tag>
+            <div v-if="tags.length<=0">
+              <span>暂无数据</span>
             </div>
+            <template v-else>
+              <div class="tag inline-block" v-for="(item, i) of tags" :key="i">
+                <el-tag>
+                  <i class="el-icon-price-tag"></i>
+                  <span>{{item.name}}</span>
+                  <span class="ml-10">{{item.count}}</span>
+                </el-tag>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -68,7 +76,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import * as articleHttp from '../../http/api/article';
+import * as articleHttp from '../../http/api/client/article';
 import * as tagHttp from '../../http/api/client/tags';
 
 @Component({
@@ -112,9 +120,10 @@ export default class Home extends Vue {
   }
 
   getTag(id) {
-    return this.tags.find(v => {
+    const tag = this.tags.find(v => {
       return v._id === id;
-    }).name
+    });
+    return tag && tag.name;
   }
 }
 </script>
@@ -148,6 +157,7 @@ export default class Home extends Vue {
       padding: 10px;
       display: inline-block;
       box-sizing: border-box;
+      cursor: pointer;
     .cover{
       width: 100%;
       height: 250px;

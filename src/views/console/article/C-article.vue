@@ -73,7 +73,7 @@ export default class CArticle extends Vue {
     }
     articleHttp.getList(pagination).then(res => {
       this.tableData = res;
-      if(res && res['content'].length > 0) {
+      if(res && res['content'] && res['content'].length > 0) {
         this.getOptions();
       }
       this.loading = false;

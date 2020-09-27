@@ -36,7 +36,7 @@
             </p>
           </div>
           <div class="ml-10 mt-10 color-2">
-            <p>{{item.content}}</p>
+            <p class="">{{item.content}}</p>
           </div>
           <div class="mt-20" v-if="item.replicesCount>0 && !comment">
             <ReplicesList :comment="item" :isConsole="isConsole" :isReplied="isReplied"></ReplicesList>
@@ -50,7 +50,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch, Emit } from 'vue-property-decorator';
 import ReplicesTemplate from './Replices.vue';
-import * as replyHttp from '../../http/api/reply';
+import * as replyHttp from '../../http/api/client/reply';
 import * as consoleReplyHttp from '../../http/api/console/reply';
 import {ReplyData} from '@/components/datamodel/Reply';
 import {Message} from 'element-ui';

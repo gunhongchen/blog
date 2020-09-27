@@ -2,9 +2,14 @@
     <div class="article">
         <el-card class="nav" shadow="never">
             <ul class="tree">
-                <li class="cursor-p " v-for="(item, i) in tagData" :key="i" @click="selected(item)">
-                    <p class="size-title">{{item.name}}<span>（{{item.count}}）</span></p>
-                </li>
+                <template v-if="tagData.length>0">
+                    <li v-for="(item, i) in tagData" :key="i" @click="selected(item)">
+                        <p class="size-title">{{item.name}}<span>（{{item.count}}）</span></p>
+                    </li>
+                </template>
+                <template v-else>
+                    <p class="emptyTitle">暂无数据</p>
+                </template>
             </ul>
         </el-card>
         <el-card class="list" shadow="never">
@@ -21,11 +26,11 @@
                     </router-link>
                     </el-timeline-item>
                 </el-timeline>
-                <p class="cursor-p" v-if="!islast" @click="loadData(1)">点击加载更多<i v-if="isloading" class="el-icon-loading"></i></p>
+                <p class="emptyTitle cursor-p" v-if="!islast" @click="loadData(1)">点击加载更多<i v-if="isloading" class="el-icon-loading"></i></p>
                 <!-- <p v-if="islast" @click="noData">{{noDataText}}</p> -->
             </template>
             <template v-else>
-                <p class="text-center color-2">暂无数据</p>
+                <p class="emptyTitle">暂无数据</p>
             </template>
         </el-card>
         
@@ -34,7 +39,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import * as tagsHttp from '../../../http/api/client/tags';
-import * as articleHttp from '../../../http/api/article';
+import * as articleHttp from '../../../http/api/client/article';
 import { TabaData } from '../../../components/datamodel/Table';
 
 @Component({
@@ -113,6 +118,9 @@ export default class Article extends Vue {
         position:absolute;
         max-height: 80vh;
         overflow: auto;
+        right:0;
+        transform: rotateY(-10deg);
+        transform-origin: right;
         h4{
             font-size: 1.3em;
         }
@@ -122,21 +130,12 @@ export default class Article extends Vue {
         transform: rotateY(10deg);
         transform-origin: left;
     }
-    .list{
-        right:0;
-        transform: rotateY(-10deg);
-        transform-origin: right;
-        p{
-            text-align: center;
-            font-size: 16px;
-            color: #ddd;
-        }
-    }
     .border{
         border: 1px solid $color-1;
     }
     .tree {
         li{
+            cursor: pointer;
             padding: 15px 10px;
             text-align:right;
             &:hover{
@@ -144,6 +143,11 @@ export default class Article extends Vue {
                 color:#fff;
             }
         }
+    }
+    .emptyTitle{
+        text-align: center;
+        font-size: 16px;
+        color: #ddd;
     }
     /deep/ {
         .el-card{

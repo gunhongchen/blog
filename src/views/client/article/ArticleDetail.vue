@@ -2,8 +2,12 @@
     <div class="article-detail">
         <div class="detail-container" v-loading="loading">
             <div class="detail-head">
-                <p class="title color-1">{{article.title}}</p>
-                <p><span>{{article.createTime | date()}}</span></p>
+                <p class="title color-1 mb-10">{{article.title}}</p>
+                <p>
+                    <span>{{article.createTime | date('yyyy-MM-dd')}}</span>
+                    <span class="ml-10">·</span>
+                    <span class="ml-10">大约{{article.spentTime}}分钟读完</span>
+                </p>
             </div>
             <mavon-editor v-model="article.content" previewBackground="#fff" :boxShadow="false" :toolbarsFlag="false" :subfield="false" defaultOpen="preview"/>
             <template v-if="article.canReply">
@@ -21,8 +25,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import * as articleHttp from '../../../http/api/article';
-import * as replyHttp from '../../../http/api/reply';
+import * as articleHttp from '../../../http/api/client/article';
+import * as replyHttp from '../../../http/api/client/reply';
 import {Article} from '../../console/article/components/Article';
 import ReplicesTemplate from '@/components/replices/Replices.vue';
 import ReplicesList from '@/components/replices/ReplicesList.vue';
@@ -48,6 +52,7 @@ export default class ArticleDetail extends Vue {
         this.loading = true;
         articleHttp.getOne(id).then((res: any) => {
             this.article = res;
+            this.article['spentTime'] = res.content.length/350 > 1 ? res.content.length/400 : 1;
             this.loading = false;
         })
     }
@@ -71,9 +76,14 @@ export default class ArticleDetail extends Vue {
     width: 80%;
     margin: 0 auto;
     .detail-head{
+        text-align: center;
         .title{
-            font-size:1.8em;
+            font-size:2.5em;
             font-weight:600;
+        }
+        & p:nth-of-type(2) {
+            color: #777;
+            font-size: 1.2rem;
         }
     }
 }

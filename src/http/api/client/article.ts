@@ -1,5 +1,5 @@
-import { Article } from './../../views/console/article/components/Article';
-import axios from '../axios'
+import { Article } from '../../../views/console/article/components/Article';
+import axios from '../../axios'
 
 const config = {
     headers: {

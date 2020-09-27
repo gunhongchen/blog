@@ -7,23 +7,23 @@ const config = {
     }
 }
 function getList(params?) {
-    return axios.get('/api/article/console',{params})
+    return axios.get('/api/console/article',{params})
 }
 function getOne(id) {
-    return axios.get(`/api/article/${id}`)
+    return axios.get(`/api/console/article/${id}`)
 }
 function deleteData(params: {_id: string}) {
-    return axios.delete('/api/article', {params})
+    return axios.delete('/api/console/article', {params})
 }
 function addData(data: Article) {
-    return axios.post('/api/article', data)
+    return axios.post('/api/console/article', data)
 }
 function update(data) {
-    return axios.put('/api/article', data, config)
+    return axios.put('/api/console/article', data, config)
 }
 
 function uploadImgToken() {
-    return axios.get(`/api/article/uploadimg/token`)
+    return axios.get(`/api/console/article/uploadimg/token`)
 }
 
 export {

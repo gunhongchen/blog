@@ -1,23 +1,23 @@
 import axios from '../../axios';
 
 function addAlbum(body) {
-    return axios.post(`/api/album/console`, body);
+    return axios.post(`/api/console/album`, body);
 }
 
 function albumToken() {
-    return axios.get(`/api/album/console/token`);
+    return axios.get(`/api/console/album/token`);
 }
 
 function getAlbum(id) {
-    return axios.get(`/api/album/console/${id}`);
+    return axios.get(`/api/console/album/${id}`);
 }
 
-function deleteAlbum(id) {
-    return axios.delete(`/api/album/console/${id}`);
+function deleteAlbum(id, partentId) {
+    return axios.delete(`/api/console/album/${id}?partentId=${partentId}`);
 }
 
 function editAlbum(body) {
-    return axios.put(`/api/album/console`, body)
+    return axios.put(`/api/console/album`, body)
 }
 
 export {

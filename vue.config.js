@@ -3,6 +3,7 @@ module.exports = {
     devServer: {
         proxy: {
             "/api": {
+                // target: "http://www.blog.chaikd.com",
                 target: "http://localhost:3000",
                 changeOrigin: true,
                 ws: true,

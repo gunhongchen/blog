@@ -23,11 +23,11 @@ import * as albumHttp from '../../../../http/api/client/album';
 export default class AlbumInfinite extends Vue {
     albums: Array<any> = [];
     created() {
+        // id为0，所有第一级图集
         this.getAlbum(0);
     }
     getAlbum(id) {
         albumHttp.getAlbum(id).then((res: any) => {
-            console.log(res);
             this.albums = res;
         })
     }
