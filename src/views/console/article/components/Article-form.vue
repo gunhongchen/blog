@@ -9,6 +9,9 @@
             <el-form-item label="封面" prop="cover">
               <el-input v-model="form.cover"></el-input>
             </el-form-item>
+            <el-form-item label="简述" prop="description">
+              <el-input v-model="form.description"></el-input>
+            </el-form-item>
             <el-form-item label="内容" prop="content">
               <mavon-editor 
                 ref="md"
@@ -88,6 +91,9 @@ export default class ArticleForm extends Vue {
         ],
         tag: [
           {required: true, message: '请选择标签', trigger: 'blur'}
+        ],
+        description: [
+          {required: true, message: '请输入描述内容'}
         ]
     }
     options: [] = [];

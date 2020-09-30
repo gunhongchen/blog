@@ -15,7 +15,7 @@
                 clearable></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="onSubmit" :loading="isloading">登陆</el-button>
+              <el-button type="primary" @click="onSubmit" :loading="isloading">登录</el-button>
               <el-link type="primary" class="link">
                   <router-link to="/">返回首页</router-link>
               </el-link>

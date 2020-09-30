@@ -2,12 +2,17 @@
     <div class="album-infinite">
         <div class="album-box mt-20 mb-20">
             <div class="album-single" v-for="item in albums" :key="item._id">
-                <div class="img">
-                    <img :src="item.imgUrl || item.defaultImg || '/images/albums.jpg'" alt="">
+                <div class="img-box">
+                    <!-- <img :src="item.imgUrl || item.defaultImg || '/images/albums.jpg'" alt=""> -->
+                    <el-image 
+                        :src="item.imgUrl || item.defaultImg || '/images/albums.jpg'" 
+                        :preview-src-list="item.imgList"
+                        :lazy="true">
+                    </el-image>
                 </div>
-                <div>
-                    <p class="size-title color-2">{{item.name}}</p>
-                    <p class="color-3">{{item.createdTime | date}}</p>
+                <div class="info">
+                    <p class="size-title color-1 ml-10">{{item.name}}</p>
+                    <p class="color-1 ml-10">{{item.createdTime | date('yyyy-MM-dd')}}</p>
                 </div>
             </div>
         </div>
@@ -23,12 +28,22 @@ import * as albumHttp from '../../../../http/api/client/album';
 export default class AlbumInfinite extends Vue {
     albums: Array<any> = [];
     created() {
-        // id为0，所有第一级图集
+        // parentId为0，所有第一级图集
         this.getAlbum(0);
     }
-    getAlbum(id) {
-        albumHttp.getAlbum(id).then((res: any) => {
+    getAlbum(parentId) {
+        albumHttp.getAlbum(parentId).then((res: any) => {
             this.albums = res;
+            this.albums.forEach(v => {
+                if(v.childrenList) {
+                    v.imgList = [];
+                    v.childrenList.map((value, k) => {
+                        v.imgList[k] = value.imgUrl;
+                        return value.imgUrl;
+                    })
+                }
+            })
+            console.log(this.albums)
         })
     }
 }
@@ -38,18 +53,35 @@ export default class AlbumInfinite extends Vue {
 .album-box{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between
 }
 .album-single{
     width: 31%;
-    display: flex;
-    flex-direction: column;
-    .img{
-        width: 100%;
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 5px #eee;
+    .img-box{
+        max-height: 200px;
         flex-grow: 1;
         img{
             width: 100%;
             height: 100%;
+        }
+    }
+    .info{
+        height: 45px;
+        width: 100%;
+        position: absolute;
+        bottom: -50px;
+        background-color: rgba(0,0,0,.2);
+        .size-title{
+            font-weight: 600;
+        }
+    }
+    &:hover{
+        & .info{
+            bottom: 0;
+            padding: 10px 0;
         }
     }
 }

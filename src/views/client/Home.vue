@@ -18,15 +18,11 @@
       <div class="container p-20 overflow-hidden">
         <div class="articles float-left">
           <div class="articlebox" v-for="(item, i) of articleData" :key="i">
-            <router-link :to="'/article/'+item._id">
-              <div class="cover" v-if="item.cover">
-                <img :src="item.cover" alt="">
-              </div>
-            </router-link>
             <div class="article-info">
               <router-link :to="'/article/'+item._id">
                 <h4 class="title mb-10 mt-10 color-2">{{item.title}}</h4>
               </router-link>
+              <p class="mb-10">{{item.description}}</p>
               <p>
                 <span v-if="item.tag">
                   <i class="el-icon-price-tag"></i>
@@ -34,10 +30,15 @@
                 </span>
                 <span class="ml-10">
                   <i class="el-icon-date"></i>
-                  {{item.createTime | date(1)}}
+                  {{item.createTime | date('yyyy-MM-dd')}}
                 </span>
               </p>
             </div>
+            <router-link :to="'/article/'+item._id">
+              <div class="cover" v-if="item.cover">
+                <img :src="item.cover" alt="">
+              </div>
+            </router-link>
           </div>
           <el-pagination
             :total="pagination.total"
@@ -153,14 +154,13 @@ export default class Home extends Vue {
     padding-left: 20px;
   }
   .articlebox{
-      width: 48%;
-      padding: 10px;
-      display: inline-block;
-      box-sizing: border-box;
-      cursor: pointer;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
     .cover{
-      width: 100%;
-      height: 250px;
+      float: right;
+      width: 120px;
+      height: 120px;
     }
     img{
       width: 100%;
@@ -169,6 +169,9 @@ export default class Home extends Vue {
     .title{
       font-size: 24px;
       font-weight: 800;
+    }
+    .article-info{
+      float: left;
     }
   }
   .tag{

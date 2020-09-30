@@ -24,10 +24,10 @@ export default class Layout extends Vue {
       name: '日志',
       url: '/article'
     },
-    // {
-    //   name: '图集',
-    //   url: '/album'
-    // },
+    {
+      name: '图集',
+      url: '/album'
+    },
   ]
 }
 </script>
