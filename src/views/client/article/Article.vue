@@ -1,39 +1,41 @@
 <template>
     <div class="article">
-        <el-card class="nav" shadow="never">
-            <ul class="tree">
-                <template v-if="tagData.length>0">
-                    <li v-for="(item, i) in tagData" :key="i" @click="selected(item)">
-                        <p class="size-title">{{item.name}}<span>（{{item.count}}）</span></p>
-                    </li>
+        <!-- <client-header></client-header> -->
+        <div class="article-box">
+            <el-card class="nav" shadow="never">
+                <ul class="tree">
+                    <template v-if="tagData.length>0">
+                        <li v-for="(item, i) in tagData" :key="i" @click="selected(item)">
+                            <p class="size-title">{{item.name}}<span>（{{item.count}}）</span></p>
+                        </li>
+                    </template>
+                    <template v-else>
+                        <p class="emptyTitle">暂无数据</p>
+                    </template>
+                </ul>
+            </el-card>
+            <el-card class="list" shadow="never">
+                <template v-if="articleData.length>0">
+                    <el-timeline> 
+                        <el-timeline-item
+                        v-for="(item, index) in articleData"
+                        :key="index"
+                        :timestamp="item.createTime | date('yyyy-MM-dd')">
+                        <router-link :to="'/article/' + item._id">
+                            <el-card shadow="hover">
+                                <h4>{{item.title}}</h4>
+                            </el-card>
+                        </router-link>
+                        </el-timeline-item>
+                    </el-timeline>
+                    <p class="emptyTitle cursor-p" v-if="!islast" @click="loadData(1)">点击加载更多<i v-if="isloading" class="el-icon-loading"></i></p>
+                    <!-- <p v-if="islast" @click="noData">{{noDataText}}</p> -->
                 </template>
                 <template v-else>
                     <p class="emptyTitle">暂无数据</p>
                 </template>
-            </ul>
-        </el-card>
-        <el-card class="list" shadow="never">
-            <template v-if="articleData.length>0">
-                <el-timeline> 
-                    <el-timeline-item
-                    v-for="(item, index) in articleData"
-                    :key="index"
-                    :timestamp="item.createTime | date()">
-                    <router-link :to="'/article/' + item._id">
-                        <el-card shadow="hover">
-                            <h4>{{item.title}}</h4>
-                        </el-card>
-                    </router-link>
-                    </el-timeline-item>
-                </el-timeline>
-                <p class="emptyTitle cursor-p" v-if="!islast" @click="loadData(1)">点击加载更多<i v-if="isloading" class="el-icon-loading"></i></p>
-                <!-- <p v-if="islast" @click="noData">{{noDataText}}</p> -->
-            </template>
-            <template v-else>
-                <p class="emptyTitle">暂无数据</p>
-            </template>
-        </el-card>
-        
+            </el-card>
+        </div>
     </div>
 </template>
 <script lang="ts">
@@ -41,9 +43,12 @@ import { Component, Vue } from 'vue-property-decorator';
 import * as tagsHttp from '../../../http/api/client/tags';
 import * as articleHttp from '../../../http/api/client/article';
 import { TabaData } from '../../../components/datamodel/Table';
+import ClientHeader from '../public/client-header.vue';
 
 @Component({
-  components: {},
+  components: {
+      ClientHeader
+  },
 }) 
 export default class Article extends Vue {
 
@@ -104,7 +109,7 @@ export default class Article extends Vue {
 </script>
 <style lang="scss" scoped>
 @import '../../../assets/styles/public.scss';
-.article{
+.article-box{
     width:100%;
     position:absolute;
     top:100px;

@@ -1,0 +1,34 @@
+<template>
+    <div class="header">
+        <Header :title="title" :menus="menus"></Header>
+    </div>
+</template>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import Header from '@/components/Header.vue';
+
+@Component({
+  components: {
+    Header
+  },
+})
+export default class ClientHeader extends Vue {
+  title = 'Home';
+  menus = [
+    {
+      name: '首页',
+      url: '/'
+    },
+    {
+      name: '日志',
+      url: '/article'
+    },
+    {
+      name: '图集',
+      url: '/album'
+    },
+  ]
+}
+</script>
+<style lang="scss" scoped>
+</style>

@@ -14,7 +14,7 @@
           </p>
         </el-col>
       </el-row> -->
-
+      <!-- <client-header></client-header> -->
       <div class="container p-20 overflow-hidden">
         <div class="articles float-left">
           <div class="articlebox" v-for="(item, i) of articleData" :key="i">
@@ -79,9 +79,12 @@
 import { Component, Vue } from 'vue-property-decorator';
 import * as articleHttp from '../../http/api/client/article';
 import * as tagHttp from '../../http/api/client/tags';
+import ClientHeader from './public/client-header.vue';
 
 @Component({
-  components: {},
+  components: {
+    ClientHeader
+  },
 })
 export default class Home extends Vue {
 

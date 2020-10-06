@@ -6,7 +6,7 @@
                 <p>
                     <span>{{article.createTime | date('yyyy-MM-dd')}}</span>
                     <span class="ml-10">·</span>
-                    <span class="ml-10">大约{{article.spentTime}}分钟读完</span>
+                    <span class="ml-10">大约需要{{article.spentTime}}分钟阅读</span>
                 </p>
             </div>
             <mavon-editor v-model="article.content" previewBackground="#fff" :boxShadow="false" :toolbarsFlag="false" :subfield="false" defaultOpen="preview"/>
@@ -52,7 +52,7 @@ export default class ArticleDetail extends Vue {
         this.loading = true;
         articleHttp.getOne(id).then((res: any) => {
             this.article = res;
-            this.article['spentTime'] = res.content.length/350 > 1 ? res.content.length/400 : 1;
+            this.article['spentTime'] = res.content.length/350 > 1 ? Math.round(res.content.length/400 ): 1;
             this.loading = false;
         })
     }
