@@ -4,7 +4,7 @@
         <AlbumTreeSingle :fileData="item" :opened="opened" @openedfolder="openFolder" @closedfolder="closeFolder"  @showmodal="showAddModal" @delete="deleteData($event,index)"></AlbumTreeSingle>
         <div class="folder-children" v-if="item.type=='FOLDER'&&item.children&&item.children.length>0&&opened.indexOf(item._id)>-1">
           <div v-for="(child, childIndex) in item.children" :key="child._id">
-            <AlbumTreeSingle :fileData="child"  :opened="opened" @openedfolder="openFolder" @closedfolder="closeFolder" @showmodal="showAddModal" @delete="deleteChildData($event,childIndex,1)"></AlbumTreeSingle>
+            <AlbumTreeSingle :fileData="child"  :opened="opened" @openedfolder="openFolder" @closedfolder="closeFolder" @showmodal="showAddModal" @delete="deleteData($event,childIndex,1)"></AlbumTreeSingle>
           </div>
         </div>
       </div>
