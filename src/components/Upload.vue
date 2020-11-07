@@ -88,17 +88,17 @@ export default class Upload extends Vue {
         const isJPG = fileList.every(file => {
             return file.type.indexOf('image/')>=0;
         })
-        const isLt2M = fileList.every(file => {
-            return file.size / 1024 / 1024 < 2;
+        const isLt10M = fileList.every(file => {
+            return file.size / 1024 / 1024 < 10;
         }) 
 
         if (!isJPG) {
           this.$message.error('上传图片只能是 JPG 格式!');
         }
-        if (!isLt2M) {
-          this.$message.error('上传图片大小不能超过 2MB!');
+        if (!isLt10M) {
+          this.$message.error('上传图片大小不能超过 10MB!');
         }
-        return isJPG && isLt2M;
+        return isJPG && isLt10M;
     }
     remove(index) {
         this.upfileList.splice(index,1);

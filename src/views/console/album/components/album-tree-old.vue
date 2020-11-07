@@ -85,7 +85,6 @@ export default class AlbumTree extends Vue {
     @Emit() deleted(v,index){};
     treeFileData = this.fileData;
     deleteData(v, index) {
-        console.log(v)
         if(v.childCount>0) {
             Message.warning('该文件夹下包含其他文件，不支持删除');
             return;

@@ -4,15 +4,15 @@
             <div class="album-single" v-for="item in albums" :key="item._id">
                 <div class="img-box">
                     <!-- <img :src="item.imgUrl || item.defaultImg || '/images/albums.jpg'" alt=""> -->
+                        <!-- :lazy="true" -->
                     <el-image 
                         :src="item.imgUrl || item.defaultImg || '/images/albums.jpg'" 
-                        :preview-src-list="item.imgList"
-                        :lazy="true">
+                        :preview-src-list="item.imgList">
                     </el-image>
                 </div>
                 <div class="info">
-                    <p class="size-title color-1 ml-10">{{item.name}}</p>
-                    <p class="color-1 ml-10">{{item.createdTime | date('yyyy-MM-dd')}}</p>
+                    <p class="size-title color-4 ml-10">{{item.name}}</p>
+                    <p class="color-3 ml-10">{{item.createdTime | date('yyyy-MM-dd')}}</p>
                 </div>
             </div>
         </div>
@@ -56,6 +56,7 @@ export default class AlbumInfinite extends Vue {
 }
 .album-single{
     width: 31%;
+    min-height: 150px;
     position: relative;
     margin: 10px;
     overflow: hidden;

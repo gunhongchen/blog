@@ -7,7 +7,8 @@
       </Title>
       <div class="article-content p-20">
         <el-card class="box-card" v-loading="loading">
-          <AlbumTree :fileData="fileData" @deleted="childDeleted"></AlbumTree>
+          <!-- <AlbumTree :fileData="fileData" @deleted="childDeleted"></AlbumTree> -->
+          <AlbumTrees :fileData.sync="fileData"></AlbumTrees>
         </el-card>
       </div>
       <el-dialog 
@@ -22,7 +23,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import Title from '@/components/Title.vue';
-import AlbumTree from './components/album-tree.vue';
+import AlbumTrees from './components/album-trees.vue';
 import AlbumForm from './components/album-form.vue';
 import * as albumHttp from '../../../http/api/console/album';
 import {Message} from 'element-ui';
@@ -31,7 +32,7 @@ import {Album} from './components/Album';
 @Component({
   components: {
     Title,
-    AlbumTree,
+    AlbumTrees,
     AlbumForm
   },
 })
