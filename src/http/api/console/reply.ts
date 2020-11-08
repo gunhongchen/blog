@@ -8,7 +8,7 @@ function getComments(targetId) {
 
 // 发布评论
 function publishComments(targetId, commentId, isPublish) {
-    return axios.put(`/api/console/comment/${targetId}/replices/${commentId}`, {publish: isPublish})
+    return axios.put(`/api/console/comment/${targetId}/replices/${commentId}`, { publish: isPublish })
 }
 // 删除评论
 function deleteComments(targetId, commentId) {
@@ -27,7 +27,7 @@ function deleteReplices(commentId, replyId) {
 
 // 发布回复
 function publishReplices(replyId, isPublish) {
-    return axios.put(`/api/console/reply/replices/${replyId}`, {publish: isPublish})
+    return axios.put(`/api/console/reply/replices/${replyId}`, { publish: isPublish })
 }
 
 

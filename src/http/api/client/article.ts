@@ -3,11 +3,11 @@ import axios from '../../axios'
 
 const config = {
     headers: {
-        "Content-Type": "multipart/form-data" 
+        "Content-Type": "multipart/form-data"
     }
 }
 function getList(params?) {
-    return axios.get('/api/article',{params})
+    return axios.get('/api/article', { params })
 }
 function getOne(id) {
     return axios.get(`/api/article/${id}`)

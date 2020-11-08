@@ -3,17 +3,17 @@ import axios from '../../axios'
 
 const config = {
     headers: {
-        "Content-Type": "multipart/form-data" 
+        "Content-Type": "multipart/form-data"
     }
 }
 function getList(params?) {
-    return axios.get('/api/console/article',{params})
+    return axios.get('/api/console/article', { params })
 }
 function getOne(id) {
     return axios.get(`/api/console/article/${id}`)
 }
-function deleteData(params: {_id: string}) {
-    return axios.delete('/api/console/article', {params})
+function deleteData(params: { _id: string }) {
+    return axios.delete('/api/console/article', { params })
 }
 function addData(data: Article) {
     return axios.post('/api/console/article', data)

@@ -1,12 +1,22 @@
 <template>
   <div class="header">
-      <div class="title size-main color-2">
-          {{title}}
-      </div>
-      <div class="menu">
-        <el-menu :default-active="activeIndex" :router="true" class="el-menu-demo" mode="horizontal">
-          <el-menu-item v-for="(item, index) in menus" :key="index" :index="item.url">{{item.name}}</el-menu-item>
-          <!-- <el-submenu index="2">
+    <div class="title size-main color-2">
+      {{ title }}
+    </div>
+    <div class="menu">
+      <el-menu
+        :default-active="activeIndex"
+        :router="true"
+        class="el-menu-demo"
+        mode="horizontal"
+      >
+        <el-menu-item
+          v-for="(item, index) in menus"
+          :key="index"
+          :index="item.url"
+          >{{ item.name }}</el-menu-item
+        >
+        <!-- <el-submenu index="2">
             <template slot="title">我的工作台</template>
             <el-menu-item index="2-1">选项1</el-menu-item>
             <el-menu-item index="2-2">选项2</el-menu-item>
@@ -18,14 +28,14 @@
               <el-menu-item index="2-4-3">选项3</el-menu-item>
             </el-submenu>
           </el-submenu> -->
-        </el-menu>
-        <!-- <div class="line"></div> -->
-      </div>
+      </el-menu>
+      <!-- <div class="line"></div> -->
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component({
   components: {},
@@ -38,25 +48,24 @@ export default class Header extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/public.scss';
-    .header{
-      display:flex;
-      align-items: center;
-      background-color: $color-4;
-      padding:0 50px;
-      background-color: #fff;
-      // border-bottom: 1px solid $color-1;
-      box-shadow: 0 0 5px 5px rgba(0,0,0,.1);
-    }
-    .title{
-      margin-right: 20px;
-      font-weight:600;
-    }
-    /deep/ .el-menu{
-      padding: 0 15px;
-      &.el-menu--horizontal{
-        border-bottom:0;
-      }
-    }
-    
+@import "../assets/styles/public.scss";
+.header {
+  display: flex;
+  align-items: center;
+  background-color: $color-4;
+  padding: 0 50px;
+  background-color: #fff;
+  // border-bottom: 1px solid $color-1;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+.title {
+  margin-right: 20px;
+  font-weight: 600;
+}
+/deep/ .el-menu {
+  padding: 0 15px;
+  &.el-menu--horizontal {
+    border-bottom: 0;
+  }
+}
 </style>

@@ -1,10 +1,10 @@
 <template>
-    <div class="c-album-layout">
-        <router-view></router-view>
-    </div>
+  <div class="c-album-layout">
+    <router-view></router-view>
+  </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
   components: {},

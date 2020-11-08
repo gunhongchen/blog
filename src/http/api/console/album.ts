@@ -13,7 +13,7 @@ function getAlbum(id) {
 }
 
 function deleteAlbum(id, partentId) {
-    return axios.delete(`/api/console/album/${id}?partentId=${partentId}`);
+    return axios.delete(`/api/console/album/${id}?parentId=${partentId}`);
 }
 
 function editAlbum(body) {

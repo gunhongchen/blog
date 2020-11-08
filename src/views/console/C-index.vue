@@ -1,11 +1,9 @@
 <template>
-  <div class="c-index">
-      cindex
-  </div>
+  <div class="c-index">cindex</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
   components: {},
