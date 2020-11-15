@@ -1,6 +1,6 @@
 <template>
   <div class="album-infinite">
-    <div class="album-box mt-20 mb-20">
+    <div class="album-box mt-10 mb-10">
       <div class="album-single" v-for="item in albums" :key="item._id">
         <div class="img-box">
           <!-- <img :src="item.imgUrl || item.defaultImg || '/images/albums.jpg'" alt=""> -->
@@ -12,6 +12,7 @@
               '/images/albums.jpg'
             "
             :preview-src-list="item.imgList"
+            :fit="'scale-down'"
           >
           </el-image>
         </div>
@@ -68,7 +69,7 @@ export default class AlbumInfinite extends Vue {
   overflow: hidden;
   box-shadow: 0px 0px 5px 5px #eee;
   .img-box {
-    max-height: 200px;
+    height: 200px;
     flex-grow: 1;
     img {
       width: 100%;
@@ -76,7 +77,7 @@ export default class AlbumInfinite extends Vue {
     }
   }
   .info {
-    height: 45px;
+    height: 50px;
     width: 100%;
     position: absolute;
     bottom: -50px;
@@ -88,7 +89,6 @@ export default class AlbumInfinite extends Vue {
   &:hover {
     & .info {
       bottom: 0;
-      padding: 10px 0;
     }
   }
 }

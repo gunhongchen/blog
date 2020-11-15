@@ -11,6 +11,8 @@
     "element-ui": "^2.13.0",
     "mavon-editor": "^2.7.7",
     "qiniu-js": "^2.5.5",
+    "tailwindcss": "^1.9.6",
+    "ua-parser-js": "^0.7.22",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.3.0",

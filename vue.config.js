@@ -3,8 +3,8 @@ module.exports = {
     devServer: {
         proxy: {
             "/api": {
-                // target: "http://www.blog.chaikd.com",
-                target: "http://localhost:3000",
+                target: "http://www.blog.chaikd.com",
+                // target: "http://localhost:3000",
                 changeOrigin: true,
                 ws: true,
                 // pathRewrite: {
@@ -14,5 +14,15 @@ module.exports = {
         },
         disableHostCheck: true
     },
-    runtimeCompiler: true
+    runtimeCompiler: true,
+    css: {
+        loaderOptions: {
+            postcss: {
+                plugins: [
+                    require('tailwindcss'),
+                    require('autoprefixer')
+                ]
+            }
+        }
+    }
 }

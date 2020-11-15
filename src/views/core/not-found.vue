@@ -2,7 +2,7 @@
   <div class="not-found">
     <div class="page-not-found">
       <div class="box">
-        <div class="txt">非常抱歉，您访问的页面不存在！</div>
+        <div class="txt text-center">非常抱歉，您访问的页面不存在！</div>
         <router-link to="/"> 返回首页 </router-link>
       </div>
     </div>

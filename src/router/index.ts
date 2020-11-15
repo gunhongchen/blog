@@ -4,7 +4,7 @@ import Layout from '../views/client/Layout.vue'
 import croute from './console'
 import mroute from './home'
 import notFound from '../views/core/not-found.vue'
-import * as consoleHttp from '../http/api/auth'
+import UAParser from 'ua-parser-js';
 
 Vue.use(VueRouter)
 
@@ -12,7 +12,20 @@ const routes = [
   {
     path: '',
     component: Layout,
-    children: mroute
+    children: mroute,
+    beforeEnter: (to, from, next) => {
+      // authkey 存在 进入该路由，不存在跳转到登陆页面
+      const parser = new UAParser();
+      if (parser.getResult().device.type === undefined) {
+        next()
+      } else {
+        next('/mobile')
+      }
+    },
+  },
+  {
+    path: '/mobile',
+    component: () => import(/* webpackChunkName: "console" */ '../views/mobile/m-layout.vue'),
   },
   {
     path: '/console',
