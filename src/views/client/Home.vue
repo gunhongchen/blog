@@ -80,12 +80,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import * as articleHttp from "../../http/api/client/article";
 import * as tagHttp from "../../http/api/client/tags";
-import ClientHeader from "./public/client-header.vue";
 
 @Component({
-  components: {
-    ClientHeader,
-  },
+  components: {},
 })
 export default class Home extends Vue {
   isloading: boolean = false;

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Layout from '../views/client/Layout.vue'
 import croute from './console'
 import mroute from './home'
+import oroute from './mobile'
 import notFound from '../views/core/not-found.vue'
 import UAParser from 'ua-parser-js';
 
@@ -19,13 +20,14 @@ const routes = [
       if (parser.getResult().device.type === undefined) {
         next()
       } else {
-        next('/mobile')
+        next('/m')
       }
     },
   },
   {
-    path: '/mobile',
+    path: '/m',
     component: () => import(/* webpackChunkName: "console" */ '../views/mobile/m-layout.vue'),
+    children: oroute
   },
   {
     path: '/console',
