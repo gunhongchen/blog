@@ -23,6 +23,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
   import * as tagHttp from "../../http/api/client/tags";
+  import DropdownItem from "vant";
 
 @Component({
   components: {},
@@ -46,7 +47,7 @@ export default class MHeader extends Vue {
     } else {
       this.showSheet = true;
     }
-    this.$refs.dropdownitem.toggle();
+    this.$refs.dropdownitem['toggle']();
   }
 
   loadTags() {
