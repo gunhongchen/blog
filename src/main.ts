@@ -6,8 +6,6 @@ import axios from './http/axios'
 
 //  style
 import 'element-ui/lib/theme-chalk/index.css';
-import 'vant/lib/icon/local.css';
-import 'vant/lib/index.css'; 
 import './assets/styles/style.scss';
 
 // mavon-editor
@@ -21,20 +19,22 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 // vant
+import 'vant/lib/icon/local.css';
+import 'vant/lib/index.css'; 
 import { 
   DropdownMenu, 
   DropdownItem,
   Cell,
   Icon,
   Sticky,
-  Image as VanImage
+  Image as VanImage,
+  Tag,
+  ActionSheet,
+  ImagePreview,
+  Loading,
+  Lazyload,
+  NavBar,
 } from 'vant';
-import { Tag } from 'vant';
-import { ActionSheet } from 'vant';
-import { ImagePreview } from 'vant';
-import { Loading } from 'vant';
-import { Lazyload } from 'vant';
-import { NavBar } from 'vant';
 
 Vue.use(NavBar);
 Vue.use(Lazyload);

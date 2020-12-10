@@ -1,6 +1,4 @@
 import MHome from '../views/mobile/m-home.vue';
-import MAlbum from '../views/mobile/m-album/m-album.vue';
-import MArticle from '../views/mobile/m-article/m-article.vue';
 
 const oroute = [
     {
@@ -11,17 +9,17 @@ const oroute = [
     {
         path: 'album',
         name: 'album',
-        component: MAlbum
+        component: () => import( '../views/mobile/m-album/m-album.vue')
     },
     {
         path: 'article/tag/:id',
         name: 'article',
-        component: MArticle
+        component: () => import( '../views/mobile/m-article/m-article.vue')
     },
     {
         path: 'article/:id',
         name: 'mArticleDetail',
-        component: () => import(/* webpackChunkName: "articleDetail" */ '../views/mobile/m-article/m-article-detail.vue')
+        component: () => import( '../views/mobile/m-article/m-article-detail.vue')
     }
 ]
 export default oroute;
