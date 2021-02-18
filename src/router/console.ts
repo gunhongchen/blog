@@ -3,7 +3,7 @@ const croute = [
     { path: '', redirect: 'article' },
     {
         path: 'article',
-        component: () => import(/* webpackChunkName: "article" */ '../views/console/article/C-article-layout.vue'),
+        component: () => import(/* webpackChunkName: "consoleArticle" */ '../views/console/article/C-article-layout.vue'),
         children: [
             { path: '', name: 'c-article', component: () => import(/* webpackChunkName: "article" */ '../views/console/article/C-article.vue') },
             { path: 'add', name: 'articleAdd', component: () => import(/* webpackChunkName: "articleAdd" */ '../views/console/article/C-article-add.vue') },

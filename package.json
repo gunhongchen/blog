@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -26,7 +27,8 @@
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "typescript": "~3.5.3",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "webpack-bundle-analyzer": "^4.3.0"
   },
   "postcss": {
     "plugins": {

@@ -12,7 +12,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '',
-    component: Layout,
+    component: () => import('../views/client/Layout.vue'),
     children: mroute,
     beforeEnter: (to, from, next) => {
       // authkey 存在 进入该路由，不存在跳转到登陆页面
@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: '/m',
-    component: () => import(/* webpackChunkName: "console" */ '../views/mobile/m-layout.vue'),
+    component: () => import(/* webpackChunkName: "mobile" */ '../views/mobile/m-layout.vue'),
     children: oroute
   },
   {

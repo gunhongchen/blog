@@ -9,17 +9,17 @@ const mroute = [
   {
     path: 'article',
     name: 'articleList',
-    component: () => import(/* webpackChunkName: "article" */ '../views/client/article/Article.vue')
+    component: () => import(/* webpackChunkName: "clientArticle" */ '../views/client/article/Article.vue')
   },
   {
     path: 'article/:id',
     name: 'articleDetail',
-    component: () => import(/* webpackChunkName: "articleDetail" */ '../views/client/article/ArticleDetail.vue')
+    component: () => import(/* webpackChunkName: "clientArticleDetail" */ '../views/client/article/ArticleDetail.vue')
   },
   {
     path: 'album',
     name: 'albumList',
-    component: () => import(/* webpackChunkName: "album" */ '../views/client/album/Album.vue')
+    component: () => import(/* webpackChunkName: "clientAlbum" */ '../views/client/album/Album.vue')
   },
 ];
 
