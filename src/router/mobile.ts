@@ -15,12 +15,12 @@ const oroute = [
     {
         path: 'album',
         name: 'album',
-        component: () => import( '../views/mobile/m-album/m-album.vue')
+        component: MAlbum
     },
     {
         path: 'article/tag/:id',
         name: 'article',
-        component: () => import( '../views/mobile/m-article/m-article.vue')
+        component: MArticle
     },
     {
         path: 'article/:id',
