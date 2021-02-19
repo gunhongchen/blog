@@ -6,14 +6,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>timg.jpeg">
     <title>blog</title>
+    <!-- 引入样式 -->
+    <% for(var css of htmlWebpackPlugin.options.cdn.css) { %>
+      <link rel="stylesheet" href="<%=css%>">
+    <% } %>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but blog doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.runtime.min.js"></script>
-    <script src="https://unpkg.com/element-ui@2.13.0/lib/index.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.runtime.min.js"></script>
+    <script src="https://unpkg.com/element-ui@2.13.0/lib/index.js"></script> -->
+    <!-- 引入JS -->
+    <% for(var js of htmlWebpackPlugin.options.cdn.js) { %>
+      <script src="<%=js%>"></script>
+    <% } %>
     <!-- built files will be auto injected -->
   </body>
 </html>

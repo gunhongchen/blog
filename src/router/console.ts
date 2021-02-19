@@ -19,14 +19,14 @@ const croute = [
         path: 'album',
         component: () => import(/* webpackChunkName: "album" */ '../views/console/album/C-album-layout.vue'),
         children: [
-            { path: '', name: 'c-album', component: () => import(/* webpackChunkName: "album" */ '../views/console/album/C-album.vue') },
+            { path: '', name: 'c-album', component: () => import(/* webpackChunkName: "c-album" */ '../views/console/album/C-album.vue') },
         ]
     },
     {
         path: 'tags',
         component: () => import(/* webpackChunkName: "tags" */ '../views/console/tags/C-tags-layout.vue'),
         children: [
-            { path: '', name: 'tags', component: () => import(/* webpackChunkName: "tags" */ '../views/console/tags/C-tags.vue') },
+            { path: '', name: 'tags', component: () => import(/* webpackChunkName: "c-tags" */ '../views/console/tags/C-tags.vue') },
             { path: 'add', name: 'tagsAdd', component: () => import(/* webpackChunkName: "tagsAdd" */ '../views/console/tags/C-tags-add.vue') }
         ]
     },
@@ -34,8 +34,8 @@ const croute = [
         path: 'user',
         component: () => import(/* webpackChunkName: "user" */ '../views/console/user/C-user-layout.vue'),
         children: [
-            { path: '', name: 'user', component: () => import(/* webpackChunkName: "user" */ '../views/console/user/C-user.vue') },
-            { path: 'add', name: 'userAdd', component: () => import(/* webpackChunkName: "tagsAdd" */ '../views/console/user/C-user-add.vue') }
+            { path: '', name: 'user', component: () => import(/* webpackChunkName: "c-user" */ '../views/console/user/C-user.vue') },
+            { path: 'add', name: 'userAdd', component: () => import(/* webpackChunkName: "userAdd" */ '../views/console/user/C-user-add.vue') }
         ]
     }
 ];
