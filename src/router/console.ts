@@ -37,6 +37,14 @@ const croute = [
             { path: '', name: 'user', component: () => import(/* webpackChunkName: "c-user" */ '../views/console/user/C-user.vue') },
             { path: 'add', name: 'userAdd', component: () => import(/* webpackChunkName: "userAdd" */ '../views/console/user/C-user-add.vue') }
         ]
+    },
+    {
+        path: 'thirdparty',
+        component: () => import(/* webpackChunkName: "thirdparty" */ '../views/console/thirdparty/thirdparty.vue'),
+        children: [
+            {path: '', redirect: 'qiniu'},
+            { path: 'qiniu', name: 'thirdpartyQiniu', component: () => import(/* webpackChunkName: "thirdpartyQiniu" */ '../views/console/thirdparty/thirdparty-qiniu.vue')}
+        ]
     }
 ];
 export default croute;

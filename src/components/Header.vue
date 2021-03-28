@@ -1,36 +1,22 @@
 <template>
   <div class="header">
-    <div class="title size-main color-2">
-      {{ title }}
-    </div>
-    <div class="menu">
-      <el-menu
-        :default-active="activeIndex"
-        :router="true"
-        class="el-menu-demo"
-        mode="horizontal"
-      >
-        <el-menu-item
-          v-for="(item, index) in menus"
-          :key="index"
-          :index="item.url"
-          >{{ item.name }}</el-menu-item
-        >
-        <!-- <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项1</el-menu-item>
-              <el-menu-item index="2-4-2">选项2</el-menu-item>
-              <el-menu-item index="2-4-3">选项3</el-menu-item>
+      <div class="title size-main color-2">
+          {{title}}
+      </div>
+      <div class="menu">
+        <el-menu :default-active="activeIndex" :router="true" class="el-menu-demo" mode="horizontal">
+          <template v-for="(item, index) in menus">
+            <el-menu-item v-if="!item.children" :key="index" :index="item.url">{{item.name}}</el-menu-item>
+            <el-submenu v-if="item.children" :key="index" :index="item.url">
+              <template slot="title">{{item.name}}</template>
+              <template v-for="(itemChild, itemChildIndex) in item.children">
+                <el-menu-item :key="itemChildIndex" :index="itemChild.url">{{itemChild.name}}</el-menu-item>
+              </template>
             </el-submenu>
-          </el-submenu> -->
-      </el-menu>
-      <!-- <div class="line"></div> -->
-    </div>
+          </template>
+        </el-menu>
+        <!-- <div class="line"></div> -->
+      </div>
   </div>
 </template>
 
