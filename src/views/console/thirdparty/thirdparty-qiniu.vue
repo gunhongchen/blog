@@ -63,7 +63,7 @@
         getInfo() {
             this.isLoading = true;
             qiniuHttp.getInfo().then((res: any) => {
-                this.form = res;
+                this.form = res || this.form;
                 this.isLoading = false;
             })
         }
