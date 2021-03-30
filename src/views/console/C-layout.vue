@@ -22,7 +22,7 @@ export default class CLayout extends Vue {
     { name: "标签管理", url: "/console/tags" },
     { name: "用户管理", url: "/console/user" },
     { name: "第三方配置", url: "/console/thirdparty", children: [
-      {name: '七牛', url: "/console/thirdparty/qiniu"}
+      {name: '七牛云', url: "/console/thirdparty/qiniu"}
     ] },
   ];
 }
