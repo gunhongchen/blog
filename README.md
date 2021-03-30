@@ -3,7 +3,7 @@
 
 文章图片以及图集功能需七牛云相关配置
 # 在线示例
-  [Preview](blog.chaikd.com)
+  [Preview](http://www.blog.chaikd.com)
 # 项目启动
 	  # clone the project
 	  git clone https://github.com/chaikd/blog.git
