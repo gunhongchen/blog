@@ -1,6 +1,6 @@
 <template>
     <div class="thirdparty-qiniu">
-        <Title title="七牛"></Title>
+        <Title title="七牛云"></Title>
         <div class="p-20">
             <el-card class="box-card" v-loading="isLoading">
                 <div slot="header" class="clearfix">
