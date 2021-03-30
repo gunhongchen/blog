@@ -37,7 +37,7 @@ module.exports = {
             const plugin = new CompressionPlugin({
                 test: /\.(js|css)$/,// 匹配文件名
             });
-            plugin.push(plugin)
+            plugins['push'](plugin)
         }
         return {
             plugins,
