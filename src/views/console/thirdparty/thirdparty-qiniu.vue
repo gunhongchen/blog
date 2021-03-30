@@ -78,6 +78,7 @@
                 })
                 return;
             }
+            delete this.form._id;
             qiniuHttp.setInfo(this.form).then((res: any) => {
                 Message.success("添加成功");
                 this.getInfo();
