@@ -1,7 +1,7 @@
 <template>
   <div class="c-album">
     <Title title="图集管理">
-      <template #btn>
+      <template #btn v-if="canuse">
         <el-button
           style="padding: 3px 0"
           type="text"
@@ -11,7 +11,7 @@
         >
       </template>
     </Title>
-    <div class="article-content p-20">
+    <div v-if="canuse" class="article-content p-20">
       <el-card class="box-card" v-loading="loading">
         <!-- <AlbumTree :fileData="fileData" @deleted="childDeleted"></AlbumTree> -->
         <AlbumTrees :fileData.sync="fileData"></AlbumTrees>
@@ -25,6 +25,11 @@
     >
       <AlbumForm @submit="submit"></AlbumForm>
     </el-dialog>
+    <div v-if="!canuse" class="noauthor text-center p-20">
+      <el-card>
+        <p>请配置七牛相关信息</p>
+      </el-card>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -35,6 +40,7 @@ import AlbumForm from "./components/album-form.vue";
 import * as albumHttp from "../../../http/api/console/album";
 import { Message } from "element-ui";
 import { Album } from "./components/Album";
+import * as qiniuHttp from '@/http/api/console/qiniu';
 
 @Component({
   components: {
@@ -46,6 +52,7 @@ import { Album } from "./components/Album";
 export default class CAlbum extends Vue {
   loading = false;
   visible = false;
+  canuse = false;
   submit(v) {
     v.parentId = 0;
     albumHttp.addAlbum(v).then((res) => {
@@ -55,8 +62,16 @@ export default class CAlbum extends Vue {
     });
   }
   fileData: Array<Album> = [];
+
   created() {
     this.getAlbum(0);
+    this.imgcanuse();
+  }
+
+  imgcanuse() {
+    qiniuHttp.canuse().then((res: any) => {
+      this.canuse = res;
+    })
   }
 
   getAlbum(id) {

@@ -46,7 +46,8 @@
             accessKey: '',
             secretKey: '',
             albumUrl: '',
-            blogUrl: ''
+            blogUrl: '',
+            _id: ''
         };
         rules = {
             accessKey: [{ required: true, message: "请输入accessKey", trigger: "change" }],
@@ -61,7 +62,7 @@
 
         getInfo() {
             this.isLoading = true;
-            qiniuHttp.getInfo().then(res => {
+            qiniuHttp.getInfo().then((res: any) => {
                 this.form = res;
                 this.isLoading = false;
             })
@@ -70,14 +71,14 @@
         onSubmit() {
             this.isLoading = true;
             if(this.form._id) {
-                qiniuHttp.putInfo(this.form).then(res => {
+                qiniuHttp.putInfo(this.form).then((res: any) => {
                     Message.success("修改成功");
                     this.getInfo();
                     this.isLoading = false;
                 })
                 return;
             }
-            qiniuHttp.setInfo(this.form).then(res => {
+            qiniuHttp.setInfo(this.form).then((res: any) => {
                 Message.success("添加成功");
                 this.getInfo();
                 this.isLoading = false;

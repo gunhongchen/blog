@@ -12,8 +12,13 @@ function putInfo(body) {
     return axios.put('/api/console/qiniu', body)
 }
 
+function canuse() {
+    return axios.get('/api/console/qiniu/canuse');
+}
+
 export {
     setInfo,
     getInfo,
-    putInfo
+    putInfo,
+    canuse
 }

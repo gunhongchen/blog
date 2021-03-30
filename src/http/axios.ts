@@ -16,7 +16,7 @@ import router from '../router'
 // 响应拦截器：在请求响应之后拦截
 axios.interceptors.response.use(response => {
   if (response.status === 200) {
-    return response.data ? response.data : response;
+    return response.data;
   }
   return response;
 }, error => {
