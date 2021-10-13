@@ -7,8 +7,8 @@ module.exports = {
     devServer: {
         proxy: {
             "/api": {
-                // target: "http://www.blog.chaikd.com",
-                target: "http://localhost:3000",
+                target: "http://www.blog.chaikd.com",
+                // target: "http://localhost:3000",
                 changeOrigin: true,
                 ws: true,
                 // pathRewrite: {
@@ -31,7 +31,7 @@ module.exports = {
     },
     configureWebpack: config => {
         const plugins = [
-            new BundleAnalyzerPlugin()
+            // new BundleAnalyzerPlugin()
         ];
         if (process.env.NODE_ENV === 'production') {
             const plugin = new CompressionPlugin({

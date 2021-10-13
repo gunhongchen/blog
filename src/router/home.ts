@@ -21,6 +21,11 @@ const mroute = [
     name: 'albumList',
     component: () => import(/* webpackChunkName: "clientAlbum" */ '../views/client/album/Album.vue')
   },
+  {
+    path: 'live',
+    name: 'live',
+    component: () => import(/* webpackChunkName: "clientLive" */ '../views/client/live/index.vue')
+  },
 ];
 
 export default mroute;

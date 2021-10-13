@@ -28,6 +28,10 @@ export default class Layout extends Vue {
       name: "图集",
       url: "/album",
     },
+    {
+      name: "播放",
+      url: "/live",
+    }
   ];
 }
 </script>
