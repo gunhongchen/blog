@@ -53,7 +53,7 @@ import * as userHttp from "../../../../http/api/console/user";
   components: {},
 })
 export default class UserForm extends Vue {
-  @Prop() user;
+  @Prop() user = null;
   @Emit() submit(n) {}
   @Prop() isloading!: boolean;
   form = this.user || { userName: "", password: "", power: "" };
@@ -111,7 +111,7 @@ export default class UserForm extends Vue {
     power: [{ required: true, message: "请选择权限", trigger: "change" }],
   };
   onSubmit() {
-    this.$refs["form"]["validate"]((valid) => {
+    (this as any).$refs["form"]["validate"]((valid) => {
       if (valid) {
         this.submit(this.form);
       } else {
