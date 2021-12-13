@@ -111,7 +111,7 @@ export default class UserForm extends Vue {
     power: [{ required: true, message: "请选择权限", trigger: "change" }],
   };
   onSubmit() {
-    this.$refs["form"]["validate"]((valid) => {
+    this && this.$refs["form"]["validate"]((valid) => {
       if (valid) {
         this.submit(this.form);
       } else {
