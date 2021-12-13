@@ -40,7 +40,7 @@ module.exports = {
             plugins['push'](plugin)
         }
         return {
-            plugins,
+            // plugins,
             externals: {
                 'element-ui': 'ELEMENT',
                 'vue': 'Vue',
@@ -51,13 +51,13 @@ module.exports = {
         const cdn = {
             css: [
                 // element-ui css
-                'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
+                'https://lib.baomitu.com/element-ui/2.13.0/theme-chalk/index.css'
             ],
             js: [
                 // vue must at first!
-                'https://unpkg.com/vue/dist/vue.js',
+                'https://lib.baomitu.com/vue/2.6.10/vue.min.js',
                 // element-ui js
-                'https://unpkg.com/element-ui/lib/index.js'
+                'https://lib.baomitu.com/element-ui/2.13.0/index.js'
             ]
         }
         config.plugin('html')

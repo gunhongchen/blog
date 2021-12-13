@@ -183,7 +183,7 @@ export default class ArticleForm extends Vue {
           next(res) {},
           error(err) {},
           complete(res) {
-            that && that.$refs.md["$img2Url"](pos, res.imgUrl);
+            that.$refs.md["$img2Url"](pos, res.imgUrl);
           },
         });
     });

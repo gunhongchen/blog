@@ -47,7 +47,7 @@ export default class MHeader extends Vue {
     } else {
       this.showSheet = true;
     }
-    this && this.$refs.dropdownitem['toggle']();
+    this.$refs.dropdownitem['toggle']();
   }
 
   loadTags() {
