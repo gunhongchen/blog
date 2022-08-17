@@ -19,6 +19,7 @@ module.exports = {
         disableHostCheck: true
     },
     runtimeCompiler: true,
+    productionSourceMap: false,
     css: {
         loaderOptions: {
             postcss: {
