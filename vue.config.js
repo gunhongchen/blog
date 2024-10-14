@@ -10,23 +10,26 @@ module.exports = {
                 // target: "http://www.blog.chaikd.com",
                 target: "http://localhost:3000",
                 changeOrigin: true,
-                ws: true,
+                // ws: true,
                 // pathRewrite: {
                 //     "^/api": '/api'
                 // }
             }
         },
-        disableHostCheck: true
+        // disableHostCheck: true
     },
     runtimeCompiler: true,
     productionSourceMap: false,
     css: {
         loaderOptions: {
             postcss: {
-                plugins: [
-                    require('tailwindcss'),
-                    require('autoprefixer')
-                ]
+                postcssOptions: {
+                    plugins: [
+                        require('autoprefixer'),
+                        require('tailwindcss')
+                    ],
+                },
+                sourceMap: true,
             }
         }
     },

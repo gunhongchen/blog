@@ -192,7 +192,7 @@ export default class ArticleForm extends Vue {
 </script>
 
 <style lang="scss">
-/deep/ .el-input {
+::v-deep .el-input {
   max-width: 80%;
 }
 </style>

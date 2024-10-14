@@ -48,7 +48,7 @@ export default class Header extends Vue {
   margin-right: 20px;
   font-weight: 600;
 }
-/deep/ .el-menu {
+::v-deep .el-menu {
   padding: 0 15px;
   &.el-menu--horizontal {
     border-bottom: 0;

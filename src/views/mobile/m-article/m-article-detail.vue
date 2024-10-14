@@ -66,7 +66,7 @@ export default class MArticleDetail extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-  /deep/ {
+  ::v-deep {
     .v-note-wrapper{
       border: none;
     }

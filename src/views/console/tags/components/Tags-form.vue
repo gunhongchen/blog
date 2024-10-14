@@ -55,7 +55,7 @@ export default class TagForm extends Vue {
 .tags-form {
   width: 100%;
 }
-/deep/ {
+::v-deep {
   .el-input {
     max-width: 80%;
   }

@@ -73,14 +73,14 @@ export default class CTags extends Vue {
 <style lang="scss" scoped>
 @import "../../../assets/styles/public.scss";
 .box-card {
-  /deep/ .el-card__body {
+  ::v-deep .el-card__body {
     display: flex;
   }
 }
 .box-card-content {
   width: 150px;
   margin-right: 20px;
-  /deep/ .el-card__body {
+  ::v-deep .el-card__body {
     display: none;
   }
 }

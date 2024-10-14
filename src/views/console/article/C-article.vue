@@ -111,7 +111,7 @@ export default class CArticle extends Vue {
 <style lang="scss" scoped>
 @import "../../../assets/styles/public.scss";
 
-/deep/ {
+::v-deep {
   .el-table .warning-row {
     background: oldlace;
   }

@@ -78,7 +78,7 @@ export default class Login extends Vue {
     color: rgb(21, 144, 226);
   }
 }
-/deep/ {
+::v-deep {
   .el-form-item__content {
     text-align: center;
   }

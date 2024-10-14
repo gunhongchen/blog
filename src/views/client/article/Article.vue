@@ -158,7 +158,7 @@ export default class Article extends Vue {
     font-size: 16px;
     color: #ddd;
   }
-  /deep/ {
+  ::v-deep {
     .el-card {
       border: 0;
       -ms-overflow-style: none;

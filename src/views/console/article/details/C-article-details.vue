@@ -56,7 +56,7 @@ export default class CArticleDetails extends Vue {
   flex-grow: 1;
   overflow-y: auto;
 }
-/deep/ {
+::v-deep {
   .el-menu {
     height: 100%;
     width: 200px;

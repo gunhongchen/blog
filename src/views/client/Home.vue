@@ -181,7 +181,7 @@ export default class Home extends Vue {
 .nav {
   background-color: rgba(200, 200, 200, 0.5);
 }
-/deep/ {
+::v-deep {
   .el-pagination {
     text-align: right;
   }

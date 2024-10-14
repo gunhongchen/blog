@@ -129,7 +129,7 @@ export default class Table extends Vue {
     text-align: center;
   }
 }
-/deep/ {
+::v-deep {
   .el-pagination {
     text-align: right;
   }

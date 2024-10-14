@@ -126,7 +126,7 @@ export default class UserForm extends Vue {
 .tags-form {
   width: 100%;
 }
-/deep/ {
+::v-deep {
   .el-input {
     max-width: 80%;
   }

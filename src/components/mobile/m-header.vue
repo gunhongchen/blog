@@ -62,7 +62,7 @@ export default class MHeader extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-  /deep/ {
+  ::v-deep {
     .van-dropdown-menu__title::after{
       display: none;
     }

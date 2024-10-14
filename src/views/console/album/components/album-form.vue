@@ -104,7 +104,7 @@ export default class AlbumForm extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../../assets/styles/public.scss";
-/deep/ {
+::v-deep {
   .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;

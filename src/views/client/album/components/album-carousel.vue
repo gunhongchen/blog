@@ -36,7 +36,7 @@ export default class AlbumCarousel extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../../assets/styles/public.scss";
-/deep/ {
+::v-deep {
   .item-box {
     position: relative;
     width: 100%;

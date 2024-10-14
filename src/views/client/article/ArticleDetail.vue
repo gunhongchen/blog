@@ -106,7 +106,7 @@ export default class ArticleDetail extends Vue {
 .replices {
   width: 70%;
 }
-/deep/ {
+::v-deep {
   .v-note-wrapper.markdown-body {
     border: 0;
   }
