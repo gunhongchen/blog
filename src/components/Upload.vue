@@ -89,8 +89,12 @@ export default class Upload extends Vue {
                 reject(err);
               },
               complete(res) {
+                res = {
+                  ...res,
+                  imgUrl: `http://${res.imgUrl}`
+                }
                 that.upfileList.splice(key, 1, res);
-                resolve();
+                resolve(res);
               },
             });
         });
@@ -108,14 +112,14 @@ export default class Upload extends Vue {
       return file.type.indexOf("image/") >= 0;
     });
     const isLt10M = fileList.every((file) => {
-      return file.size / 1024 / 1024 < 10;
+      return file.size / 1024 / 1024 < 30;
     });
 
     if (!isJPG) {
       this.$message.error("上传图片只能是 JPG 格式!");
     }
     if (!isLt10M) {
-      this.$message.error("上传图片大小不能超过 10MB!");
+      this.$message.error("上传图片大小不能超过 30MB!");
     }
     return isJPG && isLt10M;
   }
